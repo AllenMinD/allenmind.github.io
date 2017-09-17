@@ -8,10 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="Allenmind">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Allenmind&#39;s Blog"/>
+  <meta property="og:title" content="Hexo使用笔记"/>
   <meta property="og:description" content="这是Allenmind的个人博客" />
   <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:image" content="http://yoursite.com"/>
   
     <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
@@ -35,8 +35,7 @@
 </head>
 
   <body>
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
@@ -44,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Archives</p>
+          <p class="title">Hexo使用笔记</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -90,34 +89,50 @@
 </header>
 
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2017/09/05/text-note/" class="post-title">
-    hello-world   //在此处添加你的标题。
-  </a>
-  <div class="date text-muted">Posted on 2017-09-05 13:00:27</div>
-</div>
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-09-17</span>
+            <span class="time">14:25:11</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-      
+<a class="tag" href="/tags/Hexo/">#Hexo</a> <a class="tag" href="/tags/博客搭建/">#博客搭建</a>
 
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>#Hexo使用笔记</p>
+<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a></p>
+<p>###1. 创建hexo（初始化hexo）<br>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<pre><code>//&lt;folder&gt;是一个文件夹名，这个文件夹将会包含你Hexo博客全部内容
+$ hexo init &lt;folder&gt;
+$ cd &lt;folder&gt;
+$ npm install
+</code></pre><p>###2. 配置文件_config.yml中各项的含义<br>看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">这里</a></p>
+<p>###3. 常用指令<br>    hexo n #写文章<br>    hexo g #生成<br>    hexo d #部署到服务器 #可与hexo g合并为 hexo g -d<br>    hexo clean #清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。<br>    hexo s #启用本地服务器，用来进行本地预览</p>
+<p>###4. Front-Matter<br>Front-matter 是文章最上方以 <code>---</code> 分隔的区域，用于指定个别文章的变量。具体看<a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="external">这里</a>。</p>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
-      </ul>
-    </div>
-  </div>
-</div>
+</article>
 
 
 
