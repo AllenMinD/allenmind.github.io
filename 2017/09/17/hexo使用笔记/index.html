@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- Custom CSS -->
   
-  <link rel="stylesheet" href="/css/style.dark.css">
+  <link rel="stylesheet" href="/css/style.light.css">
 
   <!-- Google Analytics -->
   
@@ -101,8 +101,14 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-09-17</span>
-            <span class="time">14:25:11</span>
+            <span class="time">15:24:28</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/学习/">学习</a>
+</span>
           
         </div>
         <!-- Tags -->
@@ -117,17 +123,30 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>#Hexo使用笔记</p>
-<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a></p>
-<p>###1. 创建hexo（初始化hexo）<br>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
-<pre><code>//&lt;folder&gt;是一个文件夹名，这个文件夹将会包含你Hexo博客全部内容
-$ hexo init &lt;folder&gt;
-$ cd &lt;folder&gt;
-$ npm install
-</code></pre><p>###2. 配置文件_config.yml中各项的含义<br>看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">这里</a></p>
-<p>###3. 常用指令<br>    hexo n #写文章<br>    hexo g #生成<br>    hexo d #部署到服务器 #可与hexo g合并为 hexo g -d<br>    hexo clean #清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。<br>    hexo s #启用本地服务器，用来进行本地预览</p>
-<p>###4. Front-Matter<br>Front-matter 是文章最上方以 <code>---</code> 分隔的区域，用于指定个别文章的变量。具体看<a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="external">这里</a>。</p>
+          <p>这是文章摘要:这篇文章主要写了Hexo常见使用方法。<br><a id="more"></a></p>
+<h1>Hexo使用笔记</h1>
 
+<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a></p>
+<h3>1. 创建hexo（初始化hexo）</h3>
+
+<pre><code>//安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。
+hexo init 文件名
+cd 文件名
+npm install
+</code></pre><h3>2. 配置文件_config.yml中各项的含义</h3><br>看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">这里</a><br><h3>3. 常用指令</h3>
+
+<pre><code>hexo n #写文章
+hexo g #生成
+hexo d #部署到服务器 #可与hexo g合并为 hexo g -d
+hexo clean #清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。
+hexo s #启用本地服务器，用来进行本地预览
+</code></pre><p></p><h3>4. Front-Matter</h3><br>Front-matter 是文章最上方以 <code>---</code> 分隔的区域，用于指定个别文章的变量。具体看<a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="external">这里</a>。<p></p>
+<p></p><h3>5. 文章摘要</h3><br>和WordPress一样，Hexo创建文章摘要要使用<code>&lt;!--more--&gt;</code>。  <p></p>
+<pre><code>//文章摘要一般放在每篇文章文件的Front-Matter下面，这样的话，在more之上，Front-Matter之下的内容就是显示出来的文章摘要
+
+摘要内容
+&lt;!--more--&gt;
+</code></pre>
         </div>
       </div>
     </div>
