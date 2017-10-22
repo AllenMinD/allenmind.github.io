@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="鼠标拖拽效果"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/space.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">鼠标拖拽效果</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-10-22</span>
+            <span class="time">15:48:54</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/网页效果技巧/">网页效果技巧</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/鼠标拖拽/">#鼠标拖拽</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>利用原生js实现鼠标拖拽效果<br><a id="more"></a></p>
+<h1>鼠标拖拽效果手把手教学</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">先搞清楚几个属性</a>  </li>
+<li><a href="#chapter2">实现原理</a>  </li>
+<li><a href="#chapter3">最终结果及代码</a></li>
+</ol>
+<p></p><h3 id="chapter1">1. 先搞清楚几个属性</h3><br>在实现拖拽效果之前，我们现在搞清楚几个属性：  <p></p>
+<ul>
+<li><p></p><h5>元素的偏移量（offset）</h5>  <p></p>
+<ul>
+<li><code>offsetHeight</code>: 元素在垂直方向上占用的空间大小。即：<code>元素的高度 + 水平滚动条的高度 + border +　padding</code>  </li>
+<li><code>offsetWidth</code>: 元素在水平方向上占用的空间大小。即：<code>元素的宽度 + 垂直滚动条的宽度 +　border + padding</code>  </li>
+<li><code>offsetLeft</code>: <code>元素的左外边框</code>到<code>包含元素的左内边框</code>之间的像素距离。  </li>
+<li><p><code>offsetTop</code>: <code>元素的上外边框</code>到<code>包含元素的上内边框</code>之间的像素距离。<br>(offsetLeft和offsetTop属性和<code>包含元素</code>有关，<code>包含元素</code>的引用保存在<code>offsetParent</code>属性中。除非元素设置了position:absolute，不然默认的包含元素都是<code>&lt;body&gt;</code>)  </p>
+<p>图示：<br><img src="/2017/10/22/鼠标拖拽效果/offsetXXX.png" alt="图示">  </p>
+</li>
+</ul>
+</li>
+<li><p></p><h5>客户端大小（client）</h5>  <p></p>
+<ul>
+<li><code>clientHeight</code>: <code>元素内容区宽度 +　padding</code>  </li>
+<li><p><code>clientWidth</code>: <code>元素内容区高度 + padding</code>  </p>
+<p>图示：<br><img src="/2017/10/22/鼠标拖拽效果/clientXXX.png" alt="图示">  </p>
+</li>
+</ul>
+</li>
+<li><p></p><h5>滚动大小（scroll）</h5>  <p></p>
+<ul>
+<li><code>scrollHeight</code>: 在没有滚动条的情况下，元素内容的总高度。  </li>
+<li><code>scrollWidth</code>: 在没有滚动条的情况下，元素内容的总宽度。  </li>
+<li><code>scrollLeft</code>: 被隐藏在内容区域左侧的像素数。通过设置这个属性可以改变元素的滚动位置。  </li>
+<li><p><code>scrollTop</code>: 被隐藏在内容区域上方的像素数。通过设置这个属性可以改变元素的滚动位置。  </p>
+<p>图示：<br><img src="/2017/10/22/鼠标拖拽效果/scrollXXX.png" alt="图示"> </p>
+</li>
+</ul>
+</li>
+<li><p></p><h5>鼠标事件的事件对象event的属性</h5>  <p></p>
+<ul>
+<li><strong>客户区坐标位置</strong><br>  <code>event.clientX</code> 和 <code>event.clientY</code>: 表示鼠标事件发生时鼠标指针在<code>客户区（视口）</code>中的水平和垂直坐标<br>  图示：<br>  <img src="/2017/10/22/鼠标拖拽效果/eventClientXY.png" alt="图示">  </li>
+<li><strong>页面坐标位置</strong><br>  <code>event.pageX</code> 和 <code>event.pageY</code>: 表示鼠标事件发生时鼠标指针在<code>整个页面</code>中的坐标位置。<br>  <code>event.pageX = event.clientX + scrollLeft</code><br>  <code>event.pageY = event.clientY + scrollTop</code>  </li>
+<li><strong>屏幕坐标位置</strong><br>  <code>event.screenX</code> 和 <code>event.screenY</code>: 表示鼠标事件发生时鼠标指针相对于<code>整个显示屏幕</code>的坐标信息<br>  图示：<br>  <img src="/2017/10/22/鼠标拖拽效果/eventScreenXY.png" alt="图示">   </li>
+</ul>
+</li>
+</ul>
+<p></p><h3 id="chapter2">2. 实现原理</h3><br>每一次鼠标拖拽元素，背后其实都经历了3个鼠标事件：<code>鼠标按下（mousedown）</code>、<code>鼠标移动（mousemove）</code>、<code>鼠标松开（mouseup）</code>  <p></p>
+<ul>
+<li><p>鼠标事件1—— <strong>鼠标按下</strong><br>  第一步，当鼠标在拖拽的元素上按下时，要完成两件事：  </p>
+<ul>
+<li>计算鼠标指针相对于拖拽元素左上角的坐标距离  </li>
+<li><p>标记元素为<strong>可拖拽状态</strong>  </p>
+<p>代码：  </p>
+<pre>
+box.onmousedown = function(event) {
+  var e = event || window.event;
+  var mouseCurrentX = e.clientX;  //鼠标当前位置
+  var mouseCurrentY = e.clientY; 
+  mouseOffsetX = mouseCurrentX - box.offsetLeft; //鼠标相对于拖拽元素左边框的距离
+  mouseOffsetY = mouseCurrentY - box.offsetTop;  //鼠标相对于拖拽元素上边框的距离
+  isDragging = true;  //标记元素为可拖拽状态 
+}
+</pre></li>
+</ul>
+</li>
+<li><p>鼠标事件2—— <strong>鼠标移动</strong><br>  第二步，当鼠标正在移动（拖拽元素）时，同样要完成两件事（但会复杂一点）：  </p>
+<ul>
+<li>更新拖拽元素的位置  </li>
+<li><p>判断拖拽元素是否有超出边界（客户区），不能让拖拽元素超出客户区  </p>
+<p>代码：  </p>
+<pre>
+document.onmousemove = function(event) {
+  var e = event || window.event;
+  var mouseCurrentX = e.clientX;  //鼠标当前位置
+  var mouseCurrentY = e.clientY;
+
+  //拖拽元素的新位置
+  var moveX  = 0;  // 元素左边框相对于可视区（客户区）左边的距离
+  var moveY  = 0;  // 元素上边框相对于可视区（客户区）上边的距离
+
+  if (isDragging === true) {
+      //拖拽元素的新位置 = 鼠标当前坐标 - 鼠标相对于拖拽元素的坐标
+      moveX = mouseCurrentX - mouseOffsetX;  
+      moveY = mouseCurrentY - mouseOffsetY;
+
+      //拖动范围：moveX > 0 并且 moveX < (可视区（客户区）最大宽度 - 拖拽元素的宽度)
+      //         movey > 0 并且 movey < (可视区（客户区）最大高度 - 拖拽元素的高度)
+      var pageWidth = document.documentElement.clientWidth;  //浏览器窗口的大小
+      var pageHeight = document.documentElement.clientHeight;
+
+      var maxX = pageWidth - box.offsetWidth;
+      var maxY = pageHeight - box.offsetHeight;
+
+      moveX = Math.min( maxX, Math.max(0, moveX) );  // 0 < moveX < maxX
+      moveY = Math.min( maxY, Math.max(0, moveY) );  // 0 < moveY < maxY
+
+      box.style.left = moveX + "px";
+      box.style.top = moveY + "px";
+  }        
+}
+</pre></li>
+</ul>
+</li>
+<li>鼠标事件3—— <strong>鼠标松开</strong><br>  第三步，当鼠标松开时，只需要另拖拽元素的状态变为不可拖拽即可。<br>  代码：    <pre>
+  document.onmouseup = function() {
+    isDragging = false;
+  };
+  </pre>
+
+</li>
+</ul>
+<p></p><h3 id="chapter3">3. 最终结果及完整代码</h3><br>点<a href="https://allenmind.github.io/drag-element/index.html" target="_blank" rel="external">这里</a><p></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
