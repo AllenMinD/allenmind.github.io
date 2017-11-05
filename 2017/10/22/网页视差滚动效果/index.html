@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-10-22</span>
-            <span class="time">18:04:18</span>
+            <span class="time">18:53:52</span>
           </span>
           
           <!--  Categories  -->
@@ -141,33 +141,36 @@
 </li>
 <li><p></p><h5>重点来关注一下background-attachment属性</h5><br>  <code>background-attachment</code>有3个参数：<br>  <code>scroll</code>：默认值。背景图像会随着页面其余部分的滚动而移动。<br>  <code>fixed</code>:当页面的其余部分滚动时，背景图像不会移动。<br>  <code>inherit</code>:规定应该从父元素继承 background-attachment 属性的设置。  <p></p>
 <p>  我们就是要利用background-attachment: fixed；来实现视差滚动效果。大致步骤是：  </p>
-<pre><code>1. 创建3个div，并分别给这3个div添加背景图（background-image）  
-2. 设置把3个背景图的`background-attachment`设置成`fixed`  
-代码：  
-&lt;pre&gt;
-    .section1,
-    .section2,
-    .section3 {
-      height: 800px;
-      width: 1000px;
-      margin: 0 auto;
-      font: 18px &quot;Microsoft YaHei&quot;;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;  /* 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。*/
-      background-attachment: fixed;  /** 这步是关键！！！ */
-    }
-    .section1 {
-      background-image: url(&quot;20.jpg&quot;);
-    }
-     .section2 {
-      background-image: url(&quot;30.jpg&quot;);
-    }
-    .section3 {
-      background-image: url(&quot;43.jpg&quot;);
-    } 
-&lt;/pre&gt;
-</code></pre><p>  具体看： <a href="https://allenmind.github.io/parallax-scroll/parallax.html" target="_blank" rel="external">这里</a></p>
+<ol>
+<li>创建3个div，并分别给这3个div添加背景图（background-image）  </li>
+<li><p>设置把3个背景图的<code>background-attachment</code>设置成<code>fixed</code><br>代码：  </p>
+<pre>
+.section1,
+.section2,
+.section3 {
+height: 800px;
+width: 1000px;
+margin: 0 auto;
+font: 18px "Microsoft YaHei";
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;  /* 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。*/
+background-attachment: fixed;  /** 这步是关键！！！ */
+}
+.section1 {
+background-image: url("20.jpg");
+}
+.section2 {
+background-image: url("30.jpg");
+}
+.section3 {
+background-image: url("43.jpg");
+} 
+</pre>
+
+<p>具体看： <a href="https://allenmind.github.io/parallax-scroll/parallax.html" target="_blank" rel="external">这里</a></p>
+</li>
+</ol>
 </li>
 </ul>
 <h3 id="chapter2">2. 在1的基础上加上CSS3过度特效</h3>
