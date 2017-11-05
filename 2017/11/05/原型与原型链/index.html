@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-11-05</span>
-            <span class="time">19:40:24</span>
+            <span class="time">19:41:54</span>
           </span>
           
           <!--  Categories  -->
@@ -161,7 +161,7 @@
 
  alert(person1.sayName == person2.sayName);  // true
  </pre>  </li>
-<li>一张图理解原型对象：<br> <img src="/2017/11/05/原型与原型链/招聘.png" alt="图片"><br> <img src="/2017/11/05/原型与原型链/图片1.png" alt="图片"><br> 三个关键的属性（指针）：  <ul>
+<li>一张图理解原型对象：<br> <img src="/2017/11/05/原型与原型链/图片1.png" alt="图片"><br> 三个关键的属性（指针）：  <ul>
 <li><strong>prototype</strong> ：每一个新的函数都有一个prototype属性，这个属性是一个指针，指向这个函数的原型对象。  </li>
 <li><strong>constructor</strong> : 所有原型对象会自动获得一个constructor属性，这个属性也是一个指针，指向prototype属性所在的函数。（觉得蹩扭的请看上图）  </li>
 <li><strong>[[prototype]]</strong> : 当使用构造函数创建了一个实例后（ <code>var person1=new Person();</code> ) ，这个实例会有一个[[prototype]]属性（在浏览器中叫<strong>proto</strong>）。这个属性指向构造函数的原型对象。  </li>
