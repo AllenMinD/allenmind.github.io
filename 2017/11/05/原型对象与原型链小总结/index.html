@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="原型对象与原型链小总结"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/space.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">原型对象与原型链小总结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-05</span>
+            <span class="time">15:34:25</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Js基础/">Js基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/原型/">#原型</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>对js中的原型以及原型链做一下总结。<br><a id="more"></a></p>
+<h1>理解Javascript中的原型对象（prototype）和原型链</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">什么是原型对象</a>  </li>
+<li><a href="#chapter2">原型对象与in操作符</a>  </li>
+<li><a href="#chapter3">更简单的原型语法</a>  </li>
+<li><a href="#chapter4">原型的动态性</a>  </li>
+<li><a href="#chapter5">原型对象的问题</a>  </li>
+<li><a href="#chapter6">原型链</a>  </li>
+<li><a href="#chapter7">原型的应用（创建对象、继承）</a>  </li>
+</ol>
+<p></p><h3 id="chapter1">一. 什么是原型对象</h3>  <p></p>
+<ol>
+<li>我们创建的每一个函数都有一个 <strong>prototype（原型）属性</strong> ，这个属性是一个 <strong>指针</strong> ，指向一个 <strong>对象（即原型对象）</strong> ，而这个 <strong>原型对象</strong> 中的属性和方法都是所有实例一起 <strong>共享</strong> 的。  </li>
+<li><p>使用原型对象的好处是可以让所有对象实例共享原型对象中所包含的属性和方法，这样不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中。我们看一下下面的例子：  </p>
+ <pre>
+ function Person(){
+ }
+
+ // **对Person函数的原型对象添加属性和方法**  
+ Person.prototype.name = "Nicholas";
+ Person.prototype.age = 29;
+ Person.prototype.job = "Software Engineer";
+ Person.prototype.sayName = function() {
+   alert(this.name);
+ };
+
+ // **原型对象的属性和方法是共享的，每个实例(person1, person2)都可以使用** 
+ var person1 = new Person();
+ person1.sayName();  // 显示Nicholas
+
+ var person2 = new Person();
+ person2.sayName();  // 显示Nicholas
+
+ alert(person1.sayName == person2.sayName);  // true
+ </pre>  </li>
+<li>一张图理解原型对象：<br> <img src="/2017/11/05/原型对象与原型链小总结/1.png" alt="图片1"><br> 三个关键的属性（指针）：  <ul>
+<li><strong>prototype</strong> ：每一个新的函数都有一个prototype属性，这个属性是一个指针，指向这个函数的原型对象。  </li>
+<li><strong>constructor</strong> : 所有原型对象会自动获得一个constructor属性，这个属性也是一个指针，指向prototype属性所在的函数。（觉得蹩扭的请看上图）  </li>
+<li><strong>[[prototype]]</strong> : 当使用构造函数创建了一个实例后（ <code>var person1=new Person();</code> ) ，这个实例会有一个[[prototype]]属性（在浏览器中叫<strong>proto</strong>）。这个属性指向构造函数的原型对象。  </li>
+</ul>
+</li>
+<li>当要读取某个对象的某个属性时，会先从实例本身找起，若找不到，才会到原型对象那里找。  </li>
+<li><p>通过 <strong>对象实例</strong> 可以访问 <strong>原型对象</strong> 的属性和方法，但不能重写。如果我们在实例中添加了一个属性，而假如这个属性和原型对象中的一个属性 <strong>同名</strong> 了，那我们就在实例中创建该属性，该属性将会 <strong>屏蔽</strong> 原型中的那个属性。使用 <code>delete</code> 操作符可以完全删除实例的属性，从而让我们能够重新访问原型中的属性。  </p>
+ <pre>
+ //  接着上面那个程序
+ person1.name = "Grey";
+ alert(person1.name);  // 显示"Grey"————来自实例
+ delete person1.name;  // 删除实例的name属性
+ alert(person1.name);  // 显示"Nicholas"————来自原型对象
+ </pre>   
+
+<p> 图示：<br> <img src="/2017/11/05/原型对象与原型链小总结/2.png" alt="图片2">  </p>
+</li>
+</ol>
+<p></p><h3 id="chapter2">二. 原型对象与in操作符</h3>  <p></p>
+<ol>
+<li><p>in操作符有两种用法： <strong>在for-in循环中使用</strong> 和 <strong>单独使用</strong> 。<strong>单独使用</strong> 的in操作符的作用是：判断 <strong>某一个属性是否存在于某个对象中（不管是存在于实例中还是原型中）</strong> 。<br> 例子：  </p>
+ <pre>
+ function Person(){
+ }
+
+ // **对Person函数的原型对象添加属性和方法**  
+ Person.prototype.name = "Nicholas";
+ Person.prototype.age = 29;
+ Person.prototype.job = "Software Engineer";
+ Person.prototype.sayName = function() {
+   alert(this.name);
+ };
+
+ // 创建对象实例
+ var person1 = new Person();
+ var person2 = new Person();
+
+ alert("name" in person1);  // true ————来自原型
+
+ person2.name = "Grey";
+ alert("name" in person2);  // true ————来自实例
+ </pre></li>
+<li><p>下面区分下几个操作符(下面的例子的前提条件都是上面的程序，第三个除外)：  </p>
+<ul>
+<li><strong>.isPrototypeOf(A)</strong> : 用来检测是否是实例A的原型对象。<br> <code>alert(Person.prototype.isPrototypeOf(person1);  // true</code>  </li>
+<li><strong>.hasOwnProperty()</strong> : 用来检测是否是来自 <strong>实例</strong> 的属性 (如果是来自原型的属性，就会返回false)。<br> <code>alert(person1.hasOwnProperty(&quot;name&quot;));  // false</code><br> <code>alert(person2.hasOwnProperty(&quot;name&quot;));  // true</code>  </li>
+<li><p><strong>hasPrototypeProperty()</strong> ： 用来检测是否是来自 <strong>原型对象</strong> 的属性  </p>
+ <pre>
+ function Person() {
+ }
+
+ Person.prototype.name = "Nicholas";
+
+ var person = new Person();
+
+ alert(hasPrototypeProperty(person, "name"));  // true ————因为此时"name"属性来自原型
+
+ person.name = "Grey";  // 实例重写了name属性
+ alert(hasPrototypeProperty(person, "name"));  // false ————因为实例重写了name属性，此时的name属性来自实例
+ </pre>    </li>
+<li><strong>in</strong> : 某一个属性是否存在于某个对象中（不管是存在于实例中还是原型中）  </li>
+</ul>
+</li>
+</ol>
+<p></p><h3 id="chapter3">三. 更简单的原型语法</h3>  <p></p>
+<ol>
+<li><p>用 字面量语法 来写原型对象。  </p>
+ <pre>
+ function (){
+ }
+
+ Person.prototype = {
+     name : "Nicholas",
+     age : 29,
+     job : "Software Engineer",
+     sayName : function() {
+         alert(this.name);
+     }      
+ };
+ </pre>  
+  **要注意：** 用这种语法来写原型对象的属性和方法，实际上是 **完全重写了默认的原型对象** ，此时的constructor属性也就变成了新对象的constructor属性（指向了Object构造函数），不在指向Person函数。所以，如果constructor的值真的很重要，可以像下面这样特意将它设置回适当的值：  
+ <pre>
+ function (){
+ }
+
+ Person.prototype = {
+     constructor : Person,
+     name : "Nicholas",
+     age : 29,
+     job : "Software Engineer",
+     sayName : function() {
+         alert(this.name);
+     }      
+ };
+ </pre>
+
+</li>
+</ol>
+<p></p><h3 id="chapter4">四. 原型的动态性</h3><br>我们知道，调用构造函数时会为实例添加一个指向最初原型的[[prototype]]指针，而把原型修改为另外一个对象就等于 <strong>切断了构造函数与最初原型之间的联系</strong><br>用一个例子来体现原型的动态性：  <p></p>
+<pre>
+function Person() {
+}
+
+//  这里为了说明问题，所以先用构造函数创建一个对象实例，再用字面量语法重写原型对象
+var friend = new Person();
+
+Person.prototype = {
+  constructor: Person,
+  name: "Nicholas",
+  age: 29,
+  job: "Software Engineer",
+  sayName: function() {
+    alert(this.name);  
+  }
+};
+
+friend.sayName();  // 出错！！
+</pre>  
+
+<p>图示：<br><img src="/2017/11/05/原型对象与原型链小总结/3.png" alt="图片3">  </p>
+<p>如图所示，如果 <strong>对象实例在重写原型对象之前就定义了的话</strong>  ，重写原型对象就会 <strong>切断</strong> 现有原型与任何之前已经存在的对象实例之间的联系；那些对象实例依然是指向最初的原型对象。  </p>
+<p></p><h3 id="chapter5">五. 原型对象的问题</h3>  <p></p>
+<ul>
+<li>缺点1： 原型对象省略了构造函数传递 <strong>初始化参数</strong> 这个环节，结果所有的实例在默认情况下都将取得相同的属性值。  </li>
+<li><p>缺点2： 对于包含 <strong>引用类型值的属性</strong> （Array类型的值）来说，问题就比较突出了。下面用一个简单的例子来说明一下：   </p>
+  <pre>
+  function Person(){
+  }
+
+  Person.prototype = {
+    constructor: Person,
+    friends: ["Shelby", "Court"]
+  };
+
+  var person1 = new Person();
+  var person2 = new Person();
+
+  // 向实例person1的数组属性push进一个新的值，就等于给实例person2的数组属性push进一个新的值。
+  // 因为person1和person2的friends属性是共享的。
+  person1.friends.push("Van");
+
+  alert(person1.friends); // "Shelby,Court,Van"
+  alert(person2.friends); // "Shelby,Court,Van"
+  alert(person1.friends === person2.friends); // true
+  </pre>  
+</li>
+<li><p>要解决这个问题，就要采用 <strong>组合使用构造函数模式和原型模式</strong> 来创建对象：<br><strong>构造函数模式</strong> ：用来定义对象的 <strong>特有的属性</strong> (这些特有的属性是属于<strong>对象实例</strong>的)<br><strong>原型模式</strong>：用来定义对象的 <strong>方法</strong> 和 <strong>共享的属性</strong> （这些方法和共享的属性是属于<strong>原型对象</strong>的）    </p>
+  <pre id="createObj">
+  // 利用 【组合使用构造函数模式和原型模式】 创建对象
+  // 构造函数模式：用来定义对象的 **特有的属性** 
+  function Person(name, age, job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = ["Shelby", "Court"];
+  }
+
+  // 原型模式：用来定义对象的 **方法** 和 **共享的属性** 
+  Person.prototype = {
+    constructor: Person,
+    sayName: function(){
+      alert(this.name);
+    }
+  };
+
+  var person1 = new Person("Nicholas", 29, "Software Engineer");
+  var person2 = new Person("Grey", 27, "Doctor");
+
+  person1.friends.push("Van");
+
+  alert(person1.friends); // "Shelby,Court,Van"
+  alert(person2.friends); // "Shelby,Court"
+  </pre>  
+
+</li>
+</ul>
+<p></p><h3 id="chapter6">六. 原型链</h3>  <p></p>
+<ol>
+<li>如何构成原型链： <strong>让原型对象等于另一个类型的实例。(本质就是重写原型对象)</strong> 。即 :  <code>A.prototype = new B();</code>  </li>
+<li><p>例子和图解：  </p>
+ <pre id="jicheng">
+     // 创建SuperType对象
+     function SuperType(){  //构造函数模式
+         this.property = true;
+     }
+     SuperType.prototype = {  //原型模式
+         constructor: SuperType,
+         getSuperValue: function(){
+             retrun this.property;
+         }
+     }
+
+     // 创建SubType对象
+     function SubType(){  //构造函数模式
+         this.subProperty = false;    
+     }
+     // SubType继承SuperType（创建原型链，利用原型链实现继承）
+     // 注意1：在通过原型链实现继承时，不能使用字面量语法来创建原型，因为这样做会重写原型链
+     SubType.prototype = new SuperType();
+     // 注意2：给原型添加方法的代码一定要放在替换原型的语句之后（即在SubType.prototype = new SuperType();之后）
+     SubType.prototype.getSubValue = function() {  //原型模式
+         return this.subProperty;
+     }
+
+     var = instance = new subType();
+     alert(instance.getSuperType());  //true;
+ </pre>  
+
+<p> 图示：<br> <img src="/2017/11/05/原型对象与原型链小总结/4.png" alt="图片4">   </p>
+</li>
+<li>默认的原型：Object<br> 这里要说明一点就是，所有函数的默认原型都是Object的实例，因此默认原型对象都会包含一个内部指针[[prototype]]，指向Object原型对象，如下图所示：<br> <img src="/2017/11/05/原型对象与原型链小总结/5.png" alt="图片5">  </li>
+<li>确定原型和实例的关系<br> 我们用到了一个操作符 <code>instanceof</code> 和 一个方法 <code>isPrototypeOf()</code> 。  <ul>
+<li><code>instanceof</code>:  用来测试 “实例xxx是否是对象XXX的实例”<br>  <code>alert(person1 instanceof Person);  // true</code>   </li>
+<li><code>isPrototypeOf</code>： 用来测试 “XXX原型对象是否是xxx实例的原型”<br>  <code>alert(Person.prototype.isPrototypeOf(person1)); // true</code>   </li>
+</ul>
+</li>
+</ol>
+<p></p><h3 id="chapter7">七. 原型的应用（创建对象、继承）</h3><br>说到这里，我们知道了，原型的应用目前有两个：  <p></p>
+<ul>
+<li><a href="#createObj">创建对象（通过原型模式）</a></li>
+<li><a href="#jicheng">继承（通过原型链）</a>  </li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
