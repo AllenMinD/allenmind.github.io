@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Allenmind">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Hexo使用笔记"/>
+  <meta property="og:title" content="Flexbox布局"/>
   <meta property="og:description" content="这是Allenmind的个人博客" />
   <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Hexo使用笔记</p>
+          <p class="title">Flexbox布局</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,14 +100,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2017-09-17</span>
+            <span class="date">2017-11-09</span>
             <span class="time">15:58:03</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/学习/">学习</a>
+<a href="/categories/CSS3/">CSS3</a>
 </span>
           
         </div>
@@ -116,38 +116,56 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/Hexo/">#Hexo</a> <a class="tag" href="/tags/博客搭建/">#博客搭建</a>
+<a class="tag" href="/tags/Flexbox/">#Flexbox</a> <a class="tag" href="/tags/弹性布局/">#弹性布局</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>这是文章摘要:这篇文章主要写了Hexo常见使用方法。<br><a id="more"></a></p>
-<h1>Hexo使用笔记</h1>
+          <p>Flexbox弹性布局小总结<br><a id="more"></a></p>
+<h1>Flexbox布局</h1>  
 
-<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">官方文档</a></p>
-<h3>1. 创建hexo（初始化hexo）</h3>
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">Flexbox语法</a>  </li>
+<li><a href="#chapter2">Flexbox应用实例</a>  </li>
+</ol>
+<p></p><h3 id="chapter1">一、Flexbox语法</h3><br>具体参考阮一峰老师的介绍：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">戳我</a>  <p></p>
+<p>我来小结一下Flexbox有哪些属性，方便速查：  </p>
+<ul>
+<li><p>以下6个属性设置到【容器】上：  </p>
+<ul>
+<li><code>flex-direction</code>: row | row-reverse | column | column-reverse;  // 主轴的方向</li>
+<li><code>flex-wrap</code>: nowrap |  wrap |  wrap=reverse;  //  是否”换行”</li>
+<li><code>flex-flow</code>: <flex-direction> || <flex-wrap></flex-wrap></flex-direction></li>
+<li><code>justify-content</code>: flex-start | flex-end | center | space-between | space-around;  // 主轴上的对齐方式</li>
+<li><code>align-items</code>: flex-start |  flex-end | center| baseline | stretch;  // 交叉轴上的对齐方式</li>
+<li><code>align-content</code>: flex-start | flex-end | center | space-between | space-around | stretch;  // 定义了多根轴线时的对齐方式  </li>
+</ul>
+</li>
+<li><p>以下6个属性设置到【项目】上：  </p>
+<ul>
+<li><code>order</code>: <integer>;  // 项目的排列顺序。默认为0，数值越小越靠前。</integer></li>
+<li><code>flex-grow</code>: <number>;  // 放大比例。默认为0，即如果存在剩余空间，也不放大</number></li>
+<li><code>flex-shrink</code>: <number>;  // 缩小比例。默认为1，即如果空间不足，就等比例缩小</number></li>
+<li><code>flex-basis</code>: <length> | auto;  // 在分配多余空间之前，项目占据的主轴空间（main size）</length></li>
+<li><code>flex</code>: none | [<flex-grow> || <flex-shrink> || <flex-basis>] ; // 默认是0 1 auto (后两个属性可选)</flex-basis></flex-shrink></flex-grow></li>
+<li><code>align-self</code>: auto | flex-start | flex-end | center |  baseline | stretch;  // 允许单个项目与其他项目不一样的对齐方式</li>
+</ul>
+</li>
+</ul>
+<p></p><h3 id="chapter2">二、Flexbox实例应用</h3><br>关于Flexbox的实例应用具体还是看阮一峰老师的介绍：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">再戳我</a>  <p></p>
+<p>我继续来小结一下关于Flexbox的实例应用，方便速查（点进去就是例子，按F12看代码）：  </p>
+<ul>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox2.html" target="_blank" rel="external">骰子布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-1.html" target="_blank" rel="external">网格布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-2.html" target="_blank" rel="external">圣杯布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-3.html" target="_blank" rel="external">输入框（表单）布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-4.html" target="_blank" rel="external">悬挂式布局（左边头像，右边名字和内容）</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-5.html" target="_blank" rel="external">固定页脚到视口底部</a></li>
+</ul>
 
-<pre><code>//安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。
-hexo init 文件名
-cd 文件名
-npm install
-</code></pre><h3>2. 配置文件_config.yml中各项的含义</h3><br>看<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="external">这里</a><br><h3>3. 常用指令</h3>
-
-<pre><code>hexo n #写文章
-hexo g #生成
-hexo d #部署到服务器 #可与hexo g合并为 hexo g -d
-hexo clean #清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。
-hexo s #启用本地服务器，用来进行本地预览
-</code></pre><p><a href="https://segmentfault.com/a/1190000002632530" target="_blank" rel="external">其他指令</a></p>
-<p></p><h3>4. Front-Matter</h3><br>Front-matter 是文章最上方以 <code>---</code> 分隔的区域，用于指定个别文章的变量。具体看<a href="https://hexo.io/zh-cn/docs/front-matter.html" target="_blank" rel="external">这里</a>。<p></p>
-<p></p><h3>5. 文章摘要</h3><br>和WordPress一样，Hexo创建文章摘要要使用<code>&lt;!--more--&gt;</code>。  <p></p>
-<pre><code>//文章摘要一般放在每篇文章文件的Front-Matter下面，这样的话，在more之上，Front-Matter之下的内容就是显示出来的文章摘要
-
-摘要内容
-&lt;!--more--&gt;
-</code></pre>
         </div>
       </div>
     </div>
