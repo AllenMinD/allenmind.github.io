@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-11-09</span>
-            <span class="time">15:58:03</span>
+            <span class="time">16:15:38</span>
           </span>
           
           <!--  Categories  -->
@@ -132,13 +132,13 @@
 <li><a href="#chapter2">Flexbox应用实例</a>  </li>
 </ol>
 <p></p><h3 id="chapter1">一、Flexbox语法</h3><br>具体参考阮一峰老师的介绍：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">戳我</a>  <p></p>
-<p>我来小结一下Flexbox有哪些属性，方便速查：  </p>
+<p>我来小结一下Flexbox有哪些属性，方便速查：<br>（在“ | ”左右的值表示属性的可选值，在“ || ”左右的表示的是两个属性）  </p>
 <ul>
 <li><p>以下6个属性设置到【容器】上：  </p>
 <ul>
 <li><code>flex-direction</code>: row | row-reverse | column | column-reverse;  // 主轴的方向</li>
 <li><code>flex-wrap</code>: nowrap |  wrap |  wrap=reverse;  //  是否”换行”</li>
-<li><code>flex-flow</code>: <flex-direction> || <flex-wrap></flex-wrap></flex-direction></li>
+<li><code>flex-flow</code>: (flex-direction) || (flex-wrap);  // flex-direction和flex-wrap的合体简写</li>
 <li><code>justify-content</code>: flex-start | flex-end | center | space-between | space-around;  // 主轴上的对齐方式</li>
 <li><code>align-items</code>: flex-start |  flex-end | center| baseline | stretch;  // 交叉轴上的对齐方式</li>
 <li><code>align-content</code>: flex-start | flex-end | center | space-between | space-around | stretch;  // 定义了多根轴线时的对齐方式  </li>
@@ -146,11 +146,11 @@
 </li>
 <li><p>以下6个属性设置到【项目】上：  </p>
 <ul>
-<li><code>order</code>: <integer>;  // 项目的排列顺序。默认为0，数值越小越靠前。</integer></li>
-<li><code>flex-grow</code>: <number>;  // 放大比例。默认为0，即如果存在剩余空间，也不放大</number></li>
-<li><code>flex-shrink</code>: <number>;  // 缩小比例。默认为1，即如果空间不足，就等比例缩小</number></li>
-<li><code>flex-basis</code>: <length> | auto;  // 在分配多余空间之前，项目占据的主轴空间（main size）</length></li>
-<li><code>flex</code>: none | [<flex-grow> || <flex-shrink> || <flex-basis>] ; // 默认是0 1 auto (后两个属性可选)</flex-basis></flex-shrink></flex-grow></li>
+<li><code>order</code>: (integer);  // 项目的排列顺序。默认为0，数值越小越靠前。</li>
+<li><code>flex-grow</code>: (number);  // 放大比例。默认为0，即如果存在剩余空间，也不放大</li>
+<li><code>flex-shrink</code>: (number);  // 缩小比例。默认为1，即如果空间不足，就等比例缩小</li>
+<li><code>flex-basis</code>: (length) | auto;  // 在分配多余空间之前，项目占据的主轴空间（main size）</li>
+<li><code>flex</code>: none | [(flex-grow) || (flex-shrink) || (flex-basis)];  // 默认是0 1 auto (后两个属性可选)</li>
 <li><code>align-self</code>: auto | flex-start | flex-end | center |  baseline | stretch;  // 允许单个项目与其他项目不一样的对齐方式</li>
 </ul>
 </li>
