@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="js作用域总结"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/space.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">js作用域总结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-11</span>
+            <span class="time">15:17:26</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Js基础/">Js基础</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/作用域链/">#作用域链</a> <a class="tag" href="/tags/执行环境/">#执行环境</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>总结一下js作用域，梳理一下执行环境、变量对象、作用域、作用域链这些概念<br><a id="more"></a></p>
+<h1>Javascript执行环境与作用域链小结</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">先来分清楚几个让人懵逼的概念</a>  </li>
+<li><a href="#chapter2">再来举个具体的栗子</a>  </li>
+<li><a href="#chapter3">说一下闭包吧</a>  </li>
+</ol>
+<h3 id="chapter1">一、先来分清楚几个让人懵逼的概念</h3>  
+
+<ol>
+<li><strong>【执行环境】</strong>，简称“环境”。有2个类型： <strong>全局（执行）环境</strong> 和 <strong>局部（执行）环境[即函数]</strong>。环境中的代码全部执行完后，该环境被销毁，所有在该环境中的变量和函数也都会被销毁（全局环境要到程序退出例如关闭网页和浏览器时才会被销毁）。</li>
+<li>每个函数都有自己的执行环境，即<strong>局部环境</strong>。当<strong>执行流</strong>进入一个函数（局部环境）时，函数的环境就会被推入一个<strong>环境栈</strong>中。而在函数执行之后，栈将其环境弹出，把控制权返还给之前的执行环境。</li>
+<li><strong>【变量对象】</strong>：每一个环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。</li>
+<li><strong>【活动对象】</strong>：函数（局部环境）的变量对象就是活动对象。活动对象包含：函数的参数 + 函数中定义的变量和函数声明，最开始时只包含2个变量：arguments对象和this。</li>
+<li>全局环境的变量对象始终存在，而局部环境的变量对象（即活动对象）只在函数执行的过程中存在。</li>
+<li><strong>【作用域】</strong>：作用域本质上是一个<strong>指针</strong>，指向某个执行环境的变量对象。</li>
+<li><strong>【作用域链】</strong>：作用域链本质上是一个<strong>指针列表</strong>，这个列表中的各个指针分别指向各个执行环境的变量对象。  <blockquote>
+<p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。作用域链的前端，始终都是当前执行的代码所在环境的变量对象；下一个变量对象来自包含（外部）环境，即【父执行环境】，再下一个变量对象则来自再下一个包含（外部）环境，即【爷执行环境】，这样一直延伸到全局执行环境（全局执行环境的变量对象始终都是作用域链中的最后一个对象）。  </p>
+</blockquote>
+</li>
+<li><p><strong>作用域链的作用</strong>是：  </p>
+<blockquote>
+<p>保证对【执行环境有效访问的所有变量和函数】的有序访问。</p>
+</blockquote>
+<ul>
+<li>上面这个句子有2个关键词说明了作用域链的2个具体作用，它们分别是：  <ul>
+<li><code>有效</code>：当前环境是否有权限访问这个标识符（标识符指的就是变量名或函数名）</li>
+<li><code>有序</code>：标识符的解析（变量查找、或者说变量的访问）实际上就是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止。（如果找不到标识符，通常会报错）</li>
+<li>另外在上面那2个作用之前，还有一个隐藏作用就是：收集并维护所有声明的标识符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="chapter2">二、再来举个具体的栗子</h3>    
+
+<pre>
+  function compare(value1, value2) {
+    if (value1 < value2) {
+      return -1;
+    } else if (value1 > value2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  var resulet = compare(5, 10);
+</pre>
+
+<p>上面这个代码，全局执行环境的变量对象包含compare和result。当<strong>调用</strong>compare()时，会为其产生一个局部环境，还会创建一个包含arguments对象、value1、value2（其实还有this）的活动对象。在compare()局部执行环境的作用域链中，compare的活动对象处于第一位，全局环境的变量对象处于第二位。具体看下图：  </p>
+<p><img src="/2017/11/11/js作用域总结/pic1.png" alt="图片1">  </p>
+<p>上面是简单的分析，下面，我们来重新深入分析一下compare()函数这个局部环境的作用域链具体是怎么产生的：  </p>
+<ol>
+<li>首先说明一下，全局环境的变量对象始终存在，而像compare()函数这样的局部环境的变量对象（活动对象），只在函数执行的过程中存在。</li>
+<li>在<strong>创建</strong>compare()函数时，会创建一个预先包含全局变量对象的<strong>作用域链</strong>，这个作用域链被保存在函数内部的 <strong>[[scope]]属性</strong> 中。</li>
+<li>当<strong>调用</strong>compare()函数时，会为函数创建一个 <strong>执行环境（即局部环境）</strong> ，然后复制函数的[[scope]]属性中的的作用域链，作为这个局部环境的作用域链（此时这个局部环境的作用域链里面还只有全局变量对象）。接着，创建这个局部环境的变量对象（即<strong>活动对象</strong>），并把活动对象加入到局部环境的作用域链的前端。至此，这个局部环境的作用域链才完全创建完成。所以，对于这里compare()函数的执行环境而言，其作用域包含两个变量对象：本地活动对象和全局变量对象。</li>
+</ol>
+<h3 id="chapter3">三、说一下闭包吧</h3>  
+
+<blockquote>
+<p><strong>闭包</strong>是指有权访问另一个函数作用域中的变量的函数。</p>
+</blockquote>
+<p>也就是说，【闭包】是一个函数，这个函数可以有权访问另一个函数作用域中的变量。</p>
+<p>创建闭包的常用方法就是：在一个函数内部创建另一个函数。</p>
+<p>为什么要说一下闭包呢？因为闭包和作用域链有着亲密关系。（逃</p>
+<p>闭包之所以能够访问上一级函数的变量，就是因为有作用域链的存在。</p>
+<p>一般来讲，当函数执行完毕后，局部环境的活动对象就会被销毁，内存中仅保存全局执行环境（全局执行环境的变量对象）。但是，<strong>闭包</strong>的情况又有不同。</p>
+<blockquote>
+<p>在另一个函数内部定义的函数会将<strong>其包含函数(外部函数）的活动对象</strong>添加到它的作用域链中。</p>
+</blockquote>
+<p>上面那句话有点拗口，我们举个例子：我们函数A中定义了一个函数B，函数B会把其外部函数（即函数A）的活动对象，加入到自己作用域链中。另外当函数A执行完毕后，函数A的活动对象也不会被销毁，因为函数B的作用域链仍然<strong>引用</strong>着函数A的活动对象，随着函数B的作用域链被销毁，函数A的活动对象才会被销毁。</p>
+<p>在举一个更具体的例子吧。</p>
+<pre>
+  function createComparisonFunction(propertyName) {
+    return function(object1, object2) {
+      var value1 = object1[propertyName];
+      var value2 = object2[propertyName];
+      if (value1 < value2) {
+        return -1;
+      } else if (value1 > value2) {
+        return 1;
+       } else {
+        return 0;
+      }
+    };
+  }
+
+  //创建函数
+  var comparenNames = createComparisonFunction("name");
+  //调用函数
+  var resule = compareNames({ name:"Nicholas" }, { name:"Greg" });
+  //解除对匿名函数的引用
+  compareNmaes = null;
+</pre>
+
+<p>上面的代码中：  </p>
+<ul>
+<li>全局执行环境中的变量对象有：comparenNames和resule</li>
+<li>createComparisonFunction()函数的执行环境中的活动对象有：arguments对象和propertyName</li>
+<li>匿名函数的执行环境中的活动对象有：arguments对象、object1、object2、value1、value2</li>
+</ul>
+<p>在调用comparenNames()的过程中产生的作用域链如下图所示：</p>
+<p><img src="/2017/11/11/js作用域总结/pic2.png" alt="图片2"></p>
+<p>前面我们说过：</p>
+<blockquote>
+<p>标识符的解析（变量查找、或者说变量的访问）实际上就是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直至找到标识符为止</p>
+</blockquote>
+<p>根据上图的作用域链，所以有：<br>匿名函数可以访问其自身本地变量、createComparisonFunction()中的变量和全局环境中的变量；<br>createComparisonFunction()只能访问其自身本地变量和全局环境中的变量，不能访问匿名函数中的变量；<br>全局环境中，只能访问全局环境中的变量，不能访问createComparisonFunction()中的变量和匿名函数中的变量。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

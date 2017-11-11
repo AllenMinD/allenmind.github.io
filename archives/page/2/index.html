@@ -8,10 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="Allenmind">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="改变某篇文章的banner-img"/>
+  <meta property="og:title" content="Allenmind&#39;s Blog"/>
   <meta property="og:description" content="这是Allenmind的个人博客" />
   <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="http://yoursite.com"/>
   
     <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
@@ -35,15 +35,16 @@
 </head>
 
   <body>
-    <!-- Page Header -->
+    <!-- Archive Header -->
+<!-- Page Header -->
 
 
-<header class="site-header header-background" style="background-image: url(/images/programmer.jpg)">
+<header class="site-header header-background" style="background-image: url(/img/space.jpg)">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">改变某篇文章的banner-img</p>
+          <p class="title">Blog Archives</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -89,59 +90,41 @@
 </header>
 
 
-<article>
-  <div class="container typo">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-info text-muted">
-          
-            <!-- Author -->
-            <span class="author info">By Allenmind</span>
-          
-          <!-- Date -->
-          <span class="date-time info">On
-            <span class="date">2017-09-17</span>
-            <span class="time">15:17:26</span>
-          </span>
-          
-        </div>
-        <!-- Tags -->
-        
-          <div class="post-tags text-muted">
-            Tags: 
+<!-- Archive List -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      
+        <div class="archive-item">
+  <a href="/2017/08/26/hello-world/" class="post-title">
+    Hello World
+  </a>
+  <div class="date text-muted">Posted on 2017-08-26 00:13:18</div>
+</div>
 
-<a class="tag" href="/tags/hexo/">#hexo</a>
+      
 
-
-          </div>
-        
-        <!-- Post Main Content -->
-        <div class="post-content">
-          <p>测试一下改变某篇文章的banner-img<br><a id="more"></a></p>
-<p>Home page banner and post page banner is set to be the same by default. You can specify a custom cover in the front-matter:</p>
-<pre><code>title: My awesome title
-date: 2016-07-25 18:38:45
-tags: [&quot;awesome&quot;]
-cover: /images/awesome-bg.jpg  # &lt;= remember to add this line in your post
----
-</code></pre><p>You will need to create an images folder under your blog’s source folder, and put your own awesome-bg.jpg in it for the above config to work. Of course, you can use whatever folder and image names you want, but be sure to reference them correctly in the cover line.</p>
-<pre><code>your-blog
-├── _config.yml
-├── node_modules
-├── package.json
-├── public
-├── scaffolds
-├── source
-│    ├── _posts
-│    └── images   # &lt;= here
-└── themes
-</code></pre><p>Also, be aware of the color of the cover image you choose, since the title and menu color are set to white by default. Texts are very hard to distinguish in white backgrounds, although I’ve given the texts some shadow already.</p>
-
-        </div>
-      </div>
     </div>
   </div>
-</article>
+</div>
+<!-- Pagination -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-md-10 col-md-offset-1">
+      <ul class="pagination">
+          
+              <li class="previous">
+                <a href="/archives/">
+                  <span class="symbol-left">&lt;</span>
+                  <span>PREV</span>
+                </a>
+              </li>
+          
+          
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 
