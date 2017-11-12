@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-11-11</span>
-            <span class="time">21:36:01</span>
+            <span class="time">21:41:27</span>
           </span>
           
           <!--  Categories  -->
@@ -157,7 +157,7 @@
 </li>
 </ul>
 </li>
-<li><strong>【作用域】</strong>：作用域的形成依据就是作用域链。作用域实际上是一个 <strong>“范围”</strong>，标识符（变量名/函数名）只有在这个 <strong>“范围”</strong> 里面才是有效的、可以访问的。因此，我们平常看到的“变量xxx的作用域”，实际意思就是“变量xxx在代码中可访问范围”。</li>
+<li><strong>【作用域】</strong>：作用域的形成依据就是作用域链。作用域实际上是一个 <strong>“范围”</strong>，标识符（变量名/函数名）只有在这个 <strong>“范围”</strong> 里面才是有效的、可以访问的。因此，我们平常看到的“变量xxx的作用域”，实际意思就是“变量xxx在代码中的有效（可访问）范围”。</li>
 <li>在Javascript中，变量的作用域有2种类型： <strong>全局作用域</strong> 和 <strong>局部作用域</strong> （注意不要和“全局执行环境”、“局部执行环”混淆，它们是两个不同的概念）。<br> 我们来举个例子：假设在 <strong>全局执行环境</strong> 中用var定义了一个变量A，那么全局执行环境的 <strong>变量对象</strong> 中就包含了变量A，由于全局执行环境的变量对象在任何作用域链中都位于 <strong>末端</strong> ，这也就是说，不论在代码的什么位置，都可以引用变量A，因此，变量A的作用域（使用范围）是 <strong>全局的</strong> 。<br> 在举多个例子：假设在一个函数中（ <strong>局部执行环境</strong> ）用var定义了一个变量B，那么局部执行环境的 <strong>活动对象</strong> 就包含了变量B，由于局部执行环境的活动对象在作用域链中位于 <strong>前端</strong> ，这也就是说，在全局执行环境中，我们无法引用这个函数里面的变量B，因此，变量B的作用域（使用范围）是 <strong>局部的</strong> 。</li>
 <li>另外补充一下，使用 <strong>var</strong> 声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的环境就是函数的局部环境。如果在初始化变量时没有使用var声明，该变量会自动被添加到全局环境中。</li>
 <li>再另外说一下，Javascript中没有<strong>块级作用域</strong>。</li>
