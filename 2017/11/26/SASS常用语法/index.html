@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="SASS常用语法"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/space.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">SASS常用语法</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-26</span>
+            <span class="time">21:31:06</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CSS工具/">CSS工具</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/SASS/">#SASS</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本文介绍了SASS的常用语法，平常使用的时候忘记的话可以来这里快速查看语法。<br><a id="more"></a></p>
+<h1>SASS常用语法</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">把SASS文件编译成.css文件</a>  </li>
+<li><a href="#chapter2">SASS基本用法</a>  </li>
+<li><a href="#chapter3">SASS重用代码的方法</a>  </li>
+<li><a href="#chapter4">SASS高级用法</a>  </li>
+</ol>
+<p>我们知道，CSS不是一种编程语言，它没有变量、函数、条件语句、循环语句等，因此，我们在编写CSS的时候，只能一句一句地描述，写多的话会觉得很麻烦。</p>
+<p>后来，有人为CSS加入了编程元素，这被叫做“CSS于处理器”。它的基本思想是：用一种专门的编程语言，进行网页样式的设计，然后再编译成CSS文件。</p>
+<p>目前常用的CSS于处理器有3种：SASS、LESS和Stylus。本篇文章主要介绍SASS的常用语法。想要看更系统地学习SASS，请参考<a href="https://www.sass.hk/docs/" target="_blank" rel="external">官方文档</a>。</p>
+<h3 id="chapter1">一、把SASS文件编译成.css文件</h3>
+
+<p>SASS文件就是普通的文本文件，里面可以直接使用CSS语法。后缀名一般是.scss，意思是Sassy CSS。</p>
+<p>现在我们打开命令行（cmd，或者git Bash等），切换到SASS文件所在的目录，然后运行下面命令，就可以把.scss文件转化为css代码。（现在假设文件名为test）</p>
+<pre>
+  sass test.scss
+</pre>
+
+<p>如果想要保存为css文件，就运行下面的代码：</p>
+<pre>
+  sass test.scss test.css
+</pre>
+
+<p>（<strong>这里要注意</strong>： 如果编译后出现乱码，记得在原scss文件的开头加上：<code>@charset &quot;UTF-8&quot;;</code>）</p>
+<p>SASS提供4个编译风格的选项：</p>
+<ul>
+<li><code>nested</code>: Nested （嵌套）样式是 Sass 默认的输出格式，能够清晰反映 CSS 与 HTML 的结构关系。选择器与属性等单独占用一行，缩进量与 Sass 文件中一致，每行的缩进量反映了其在嵌套规则内的层数。当阅读大型 CSS 文件时，这种样式可以很容易地分析文件的主要结构。</li>
+<li><code>expanded</code>: Expanded 输出更像是手写的样式，选择器、属性等各占用一行，属性根据选择器缩进，而选择器不做任何缩进。</li>
+<li><code>compact</code>: Compact 输出方式比起上面两种占用的空间更少，每条 CSS 规则只占一行，包含其下的所有属性。嵌套过的选择器在输出时没有空行，不嵌套的选择器会输出空白行作为分隔符。</li>
+<li><code>compressed</code>: Compressed 输出方式删除所有无意义的空格、空白行、以及注释，力求将文件体积压缩到最小，同时也会做出其他调整，比如会自动替换占用空间最小的颜色表达方式。</li>
+</ul>
+<p>4个编译风格的结果分别如下：</p>
+<p><img src="/2017/11/26/SASS常用语法/pic1-1.png" alt="图片"></p>
+<p><img src="/2017/11/26/SASS常用语法/pic1-2.png" alt="图片"></p>
+<p>在生产环境中，一般使用最后一个选项：</p>
+<pre>
+  sass --style compressed test.scss test.css
+</pre>
+
+<p>你可以让SASS监听某个文件或目录，一旦源文件有变动，就自动生成编译后的版本。(冒号前面是scss文件（目录），冒号后为编译后的css文件（目录）)</p>
+<pre>
+// watch a file 
+sass --watch test.scss:test.css
+
+// watch a directory
+sass --watch app/sass:public/stylesheets
+</pre>
+
+<h3 id="chapter2">二、SASS基本用法</h3>
+
+<p>接下来我们来看看SASS的基本用法：<a href="#chapter2-1">【变量】</a>、<a href="#chapter2-2">【运算】</a>、<a href="#chapter2-3">【嵌套】</a>、<a href="#chapter2-4">【注释】</a></p>
+<h5 id="chapter2-1">1、变量</h5>
+
+<p>SASS可以使用变量，所有变量以 <code>$</code> 开头</p>
+<pre>
+@charset "UTF-8";
+$blue : #1875e7;
+div {
+  color : $blue;
+}
+</pre>
+
+<p>编译成css文件：</p>
+<pre>
+div {
+  color: #1875e7; }
+</pre>
+
+<p>如果变量需要写在字符串中（例如镶嵌在css属性名中），就必须写在 <code>#{}</code> 当中。</p>
+<pre>
+$side: top;
+
+p {
+  margin-#{$side}: 10px;
+  border-#{$side}-left-radius: 3px;
+}
+</pre>
+
+<p>编译成CSS文件：</p>
+<pre>
+p {
+  margin-top: 10px;
+  border-top-left-radius: 3px; }
+</pre>
+
+<h5 id="chapter2-2">2、运算</h5>
+
+<p>SASS允许在代码中使用算数表达式，也就是说，可以通过运算来得到css中属性的值了。</p>
+<pre>
+$var1: 5;
+$var2: 10px;
+
+body {
+  margin: (14px/2);
+  top: 50px + 100px;
+  right: $var1 * 10%;
+  left: $var2 * 5;
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+body {
+  margin: 7px;
+  top: 150px;
+  right: 50%; }
+</pre>
+
+<h5 id="chapter2-3">3、嵌套</h5>
+
+<p>SASS允许选择器嵌套。例如下面的css代码：</p>
+<pre>
+div h1 {
+  color: red;
+}
+</pre>
+
+<p>可以写成：</p>
+<pre>
+div {
+  h1 {
+    color: red;
+  }
+}
+</pre>
+
+<p>属性也是可以嵌套的，例如border-color属性，可以写成：</p>
+<pre>
+p {
+  border: {
+    color: red;
+  }
+}
+</pre>
+
+<p><strong>注意</strong>，border后面必须加上冒号。</p>
+<p>编译成CSS文件后：</p>
+<pre>
+p {
+  border-color: red; }
+</pre>
+
+<p>在嵌套的代码块内，可以使用 <code>&amp;</code> 来引用父元素，比如a:hover，可以写成：</p>
+<pre>
+a {
+  &:hover {
+    color: #1875e7;
+  }
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+a:hover {
+  color: #1875e7; }
+</pre>
+
+<p>上面的 <code>&amp;</code> 就代表着 <code>a</code>。</p>
+<h5 id="chapter2-4">4、注释</h5>
+
+<p>SASS注释有两种风格。</p>
+<ol>
+<li>标准的CSS注释 /<em> comment </em>/ ，会保留到编译后的css文件中。</li>
+<li>单行注释 //comment ，只会保存在.scss文件中，编译后会被省略。</li>
+</ol>
+<p>在 <code>/*</code> 后面加一个感叹号，即 <code>/*!</code> ，表示是“重要注释”。即使是compressed模式编译，也会保留这行注释，通常可以用来声明版权信息。</p>
+<pre>
+/*!
+  Copyright by Allenmind
+*/
+</pre>
+
+<h3 id="chapter3">三、SASS重用代码的方法</h3>
+
+<p>接着来说下SASS中，让代码重用的方法。主要也分4部分：<a href="#chapter3-1">【继承】</a>、<a href="#chapter3-2">【Mixin】</a>、<a href="#chapter3-3">【颜色函数】</a>、<a href="#chapter3-4">【插入文件】</a></p>
+<h5 id="chapter3-1">1、继承</h5>
+
+<p>SASS允许一个选择器，继承另一个选择器。比如：现在有一个选择器.class1：</p>
+<pre>
+.class1 {
+  border 1px solid #ddd;
+}
+</pre>
+
+<p>选择器.class2要继承.class1，就要是用 <code>@extend</code> 命令：</p>
+<pre>
+.class2 {
+  @extend .class1;
+  font-siez: 120%;
+}
+</pre>
+
+<p>编译后结果为：</p>
+<pre>
+.class1, .class2 {
+  border: 1px solid #ddd; 
+}
+
+.class2 {
+  font-size: 120%; 
+}
+</pre>
+
+<h5 id="chapter3-2">2、Mixin</h5>
+
+<p>Mixin有点像C语言的宏，是可以重用的代码块。</p>
+<p>使用 <code>@mixin</code> 命令，定义一个代码块：</p>
+<pre>
+@mixin iAmLeft {
+  float: left;
+  margin-left: 10px;
+}
+</pre>
+
+<p>使用 <code>@include</code> 命令，调用这个mixin：</p>
+<pre>
+div {
+  @include iAmLeft;
+}
+</pre>
+
+<p>以上两段程序合起来编译成CSS文件后：</p>
+<pre>
+div {
+  float: left;
+  margin-left: 10px; }
+</pre>
+
+<p>mixin还有一个强大的地方，就是可以指定参数和缺省值：</p>
+<pre>
+@mixin iAmLeft($value: 10px) {
+  float: left;
+  margin-right: $value;
+}
+</pre>
+
+<p>使用的时候，根据需要加入参数（如果不指定参数，将会用定义mixin时参数的默认值，因此，如果在调用mixin（@include）时没有给定参数，在定义mixin时，就<strong>一定要给参数指定默认值</strong>，不然会报错）</p>
+<pre>
+div {
+  @include iAmLeft(30px);
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+div {
+  float: left;
+  margin-left: 30px; }
+</pre>
+
+<p>下面再来一个mixin实例，用来生成浏览器前缀：</p>
+<pre>
+@mixin  rounder($dir1, $dir2, $value) {
+  border-#{$dir1}-#{$dir2}-radius: $value;
+  -o-border-#{$dir1}-#{$dir2}-radius: $value;
+  -moz-border-#{$dir1}-#{$dir2}-radius: $value;
+  -webkit-border-#{$dir1}-#{$dir2}-radius: $value;
+}
+
+#navbar li {
+  @include rounder(top, left, 5px);
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+#navbar li {
+  border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -webkit-border-top-left-radius: 5px; }
+</pre>
+
+<h5 id="chapter3-3">3、颜色函数</h5>
+
+<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<pre>
+lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329 
+grayscale(#cc3) // #808080
+complement(#cc3) //#33c 
+</pre>
+
+<p>关于颜色函数更多的细节，请看：<a href="https://www.cnblogs.com/ylliap/p/6094241.html" target="_blank" rel="external">这里</a> 和 <a href="https://www.w3cplus.com/preprocessor/sass-color-function.html" target="_blank" rel="external">这里</a></p>
+<h5 id="chapter3-4">4、插入文件</h5>
+
+<p>当需要插入外部文件时，用@import命令：</p>
+<pre>
+@import "path/filename.scss";
+</pre>
+
+<p>如果插入的是.css文件，则等同与css的import命令。</p>
+<pre>
+@import "foo.css";
+</pre>
+
+<h3 id="chapter4">四、SASS高级用法</h3>
+
+<p>最后来看看SASS的高级用法。主要有：<a href="#chapter4-1">【条件语句】</a>、<a href="#chapter4-2">【循环语句】</a>、<a href="#chapter4-3">【自定义函数】</a></p>
+<h5 id="chapter4-1">1、条件语句</h5>
+
+<p><code>@if</code> 可以用来判断：</p>
+<pre>
+p {
+  @if 1 + 1 == 2 { border: 1px solid #a30d14; }
+  @if 5 < 3 { border: 2px dotted #555; }
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+p {
+  border: 1px solid #a30d14; }
+</pre>
+
+<p>还配有 <code>@else</code> 命令：</p>
+<pre>
+p {
+  @if 1 + 1 > 2 {
+    background-color: #000;
+  } @else {
+    background-color: #fff;
+  }
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+p {
+  background-color: #fff; }
+</pre>
+
+<h5 id="chapter4-2">2、循环语句</h5>
+
+<p>SASS支持for循环，用 <code>@for</code> 命令：</p>
+<pre>
+@for $i from 1 to 4 {
+  .border-#{$i} {
+    border: #{$i} px;
+  }
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+.border-1 {
+  border: 1 px; }
+
+.border-2 {
+  border: 2 px; }
+
+.border-3 {
+  border: 3 px; }
+</pre>
+
+<p>SASS也支持while循环，用 <code>@while</code> 命令：</p>
+<pre>
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} {
+    width: 2em * $i;
+  }
+  $i: $i - 2;
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+.item-6 {
+  width: 12em; }
+
+.item-4 {
+  width: 8em; }
+
+.item-2 {
+  width: 4em; }
+</pre>
+
+<p>第三种循环方法是each，用 <code>@each</code> 命令：</p>
+<pre>
+@each $member in a, b, c, d {
+  .#{$member} {
+    background-image: url("/image/#{$member}.jpg");
+  }
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+.a {
+  background-image: url("/image/a.jpg"); }
+
+.b {
+  background-image: url("/image/b.jpg"); }
+
+.c {
+  background-image: url("/image/c.jpg"); }
+
+.d {
+  background-image: url("/image/d.jpg"); }
+</pre>
+
+<h5 id="chapter4-3">3、自定义函数</h5>
+
+<p>SASS允许自己编写函数，用 <code>@function</code> 命令：</p>
+<pre>
+@function double($n) {
+  @return $n * 2;
+}
+
+#sidebar {
+  width: double(5px);
+}
+</pre>
+
+<p>编译成CSS文件后：</p>
+<pre>
+#sidebar {
+  width: 10px; }
+</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
