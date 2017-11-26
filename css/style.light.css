@@ -173,7 +173,7 @@ mark {
 
 /* 代码片断 */
 pre, code, pre tt {
-  font-family: Consolas, 'Courier New', monospace;
+  font-family: Consolas, 'Courier New', Courier, monospace;
 }
 
 pre {
