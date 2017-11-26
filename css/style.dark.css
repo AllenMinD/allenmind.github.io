@@ -93,7 +93,7 @@ del {
 
 address, caption, cite, code, dfn, em, th, var {
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 /* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
@@ -173,7 +173,7 @@ mark {
 
 /* 代码片断 */
 pre, code, pre tt {
-  font-family: Courier, 'Courier New', monospace;
+  font-family: Consolas, 'Courier New', Courier, monospace;
 }
 
 pre {
@@ -445,7 +445,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
 }
 .highlight pre {
-  font-size: 1.25rem;
+  font-size: 0.8125rem;
 }
 .highlight .gutter {
   width: 5%;
