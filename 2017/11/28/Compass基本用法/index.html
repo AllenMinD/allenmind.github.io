@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Compass基本用法"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Compass基本用法</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-28</span>
+            <span class="time">15:08:05</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CSS工具/">CSS工具</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Compass/">#Compass</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>听说，Sass和Compass更配哟。来看看Compass的基本用法！<br><a id="more"></a></p>
+<h1>Compass基本用法</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">Compass和Sass</a>  </li>
+<li><a href="#chapter2">安装Compass</a>  </li>
+<li><a href="#chapter3">项目初始化</a>  </li>
+<li><a href="#chapter4">编译</a>  </li>
+<li><a href="#chapter5">Compass的模块</a>  </li>
+<li><a href="#chapter6">Compass的Helper函数</a></li>
+</ol>
+<h3 id="chapter1">一、Compass和Sass</h3>
+
+<p>之前写了一篇关于<a href="http://allenmind.cn/2017/11/26/SASS%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" target="_blank" rel="external">Sass基本用法</a>的文章。Sass可以加快CSS的编写效率，让CSS的开发变得更加简单和可维护。但是，想要发挥Sass的全部功力，就需要配合Compass一起使用。（就好像，下雨天和巧克力更配哟~这样的道理）</p>
+<p>Compass是Sass的工具库（Toolkit）。</p>
+<p>Sass本身只是一个编译器，Compass是在它的基础上，封装了一系列有用的模板和模块，补充了Sass的功能。它们之间的关系，有点像Javascript和jQuery、Ruby和Rail、python和Django。</p>
+<h3 id="chapter2">二、安装Compass</h3>
+
+<p>Compass和Sass一样，同样是Ruby语言开发的，所以，要先安装Ruby。</p>
+<p>当安装完Ruby后，现在假设在Windows环境下，只要在命令行输入一下命令，即可安装Compass：</p>
+<pre>
+gem install compass
+</pre>
+
+<h3 id="chapter3">三、项目初始化</h3>
+
+<p>现在我们来创建一个Compass项目，假设项目名称为“learnCompass”，我们在当前目录的命令行输入：</p>
+<pre>
+compass create learnCompass
+</pre>
+
+<p>然后就会看到在当前目录中会出现一个叫learnCompass的文件夹。</p>
+<p>里面有3个东西：</p>
+<ul>
+<li>config.rb文件：是项目的配置文件</li>
+<li>sass文件夹：存放Sass源文件</li>
+<li>stylesheet文件夹：存放编译后的css文件</li>
+</ul>
+<p><img src="/2017/11/28/Compass基本用法/pic1.png" alt="图片"></p>
+<h3 id="chapter4">四、编译</h3>
+
+<p>当我们写完.scss文件后，需要经过编译，才能生成css文件。现在说一下如何通过Compass来编译.scss文件。</p>
+<p>Compass的编译命令是：</p>
+<pre>
+compass compile
+</pre>
+
+<p>这条命令要在 <strong>项目的根目录</strong> 下运行。效果是会将sass文件夹里面的.scss文件，编译成css文件，然后保存在stylesheet文件夹里面。</p>
+<p>默认情况下，编译出来的css文件是带有很多的注释。在生产环境中，我们需要的是压缩后的css文件，这时候要使用 <code>--output-style</code> 参数。</p>
+<pre>
+compass compile --output-style compressed
+</pre>
+
+<p>Compass只编译 <strong>发生变动的文件</strong> ，如果要重新编译未变动的文件，需要使用 <code>--force</code> 参数：</p>
+<pre>
+compass compile --force
+</pre>
+
+<p>除了使用命令行的参数，还可以直接在配置文件（config.rb）中指定编译模式：</p>
+<pre>
+output_style = :compressed
+</pre>
+
+<p><img src="/2017/11/28/Compass基本用法/pic2.png" alt="图片"></p>
+<p>这里的参数和Sass的编译模式一一对应，:nested、:expanded、:compact和:compressed。</p>
+<p>另外，可以指定environment的值（:production或:development），智能判断编译模式。</p>
+<pre>
+environment = :development
+output_style = (environment == :production) ? :compressed : :expanded
+</pre>
+
+<p><img src="/2017/11/28/Compass基本用法/pic3.png" alt="图片"></p>
+<p>在命令行模式下，除了一次性编译命令，Compass还有自动编译命令：</p>
+<pre>
+compass watch
+</pre>
+
+<p>运行这条命令后，只要.scss文件发生了变化，就会被自动编译成css文件。</p>
+<p>更多Compass命令行的用法，请参考<a href="http://compass-style.org/help/tutorials/production-css/" target="_blank" rel="external">官方文档</a></p>
+<h3 id="chapter5">五、Compass的模块</h3>
+
+<p>Compass采用模块结构，不同的模块提供不同的功能。目前，Compass内置了5个模块：</p>
+<ul>
+<li><a href="#chapter5-1">reset</a></li>
+<li><a href="#chapter5-2">css3</a></li>
+<li><a href="#chapter5-3">layout</a></li>
+<li><a href="#chapter5-4">typography</a></li>
+<li><a href="#chapter5-5">utilities</a></li>
+</ul>
+<p>这5个模块提供了Compass的主要功能。</p>
+<p>当然，我们也可以自行加载网上的第三方模块，或者自己动手编写模块。</p>
+<p>下面来介绍一下如何使用模块：</p>
+<blockquote>
+<p>使用模块的大致方法是：先用@import命令把那个模版加载进来，然后再用@include命令调用模版里面的各种mixin。</p>
+</blockquote>
+<h5 id="chapter5-1">1、reset模版</h5>
+
+<p>这个<a href="http://compass-style.org/reference/compass/reset/" target="_blank" rel="external">reset模版</a>编译出来的CSS文件，就是一般用来重置浏览器默认样式的CSS文件（<a href="https://meyerweb.com/eric/tools/css/reset/index.html" target="_blank" rel="external">reset.css</a>）。</p>
+<pre>
+@import "compass/reset";
+</pre>
+
+<h5 id="chapter5-2">2、css3模版</h5>
+
+<p>这个模版已经帮你把19种CSS3属性分别写成了19个Mixin，每个Mixin里面写好了各种浏览器前缀和兼容手段。导入模版后，用@include命令调用你想用的属性的Mixin即可。具体各个Mixin的用法请看：<a href="http://compass-style.org/reference/compass/css3/" target="_blank" rel="external">这里</a>。</p>
+<p>例子1： CSS圆角（border-radius）</p>
+<pre>
+@import "compass/css3";
+
+.rounded1 {
+  @include border-radius(5px);
+}
+
+.rounded2 {
+  @include border-corner-radius(top, left, 5px);
+}
+</pre>
+
+<p>编译后的CSS代码为：</p>
+<pre>
+.rounded1 {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.rounded2 {
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+</pre>
+
+<p>例子2：透明（opacity）</p>
+<pre>
+@import "compass/css3";
+
+#opacity {
+ @include opacity(0.5);
+}
+</pre>
+
+<p>编译后的CSS代码为：</p>
+<pre>
+#opacity {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+</pre>
+
+<p>例子3：inline-block</p>
+<pre>
+@import "compass/css3";
+
+.div-inline {
+  @include inline-block;
+}
+</pre>
+
+<p>编译后的CSS代码为：</p>
+<pre>
+.div-inline {
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  *zoom: 1;
+  *display: inline;
+}
+</pre>
+
+<h5 id="chapter5-3">3、layout模版</h5>
+
+<p><a href="http://compass-style.org/reference/compass/layout/" target="_blank" rel="external">layout模版</a>提供了布局功能（目前有3个功能：Grid Background、Sticky Footer 和 Stretching）。</p>
+<p>例子：指定子元素占满父元素（Stretching）：</p>
+<pre>
+@import "compass/layout";
+
+#stretch-full {
+  @include stretch;
+}
+</pre>
+
+<h5 id="chapter5-4">4、typography模版</h5>
+
+<p><a href="http://compass-style.org/reference/compass/typography/" target="_blank" rel="external">typography模版</a>提供了版式功能（链接、列表、文本处理、Vertical Rhythm）。</p>
+<p>例如，指定链接（Link）各个状态的颜色的Mixin为：</p>
+<pre>
+link-colors($normal, $hover, $active, $visited, $focus)
+</pre>
+
+<p>使用时写成：</p>
+<pre>
+@import "compass/typography";
+a {
+  @include link-colors(#F00, #0F0, #00F, #CCC, #AC0);
+}
+</pre>
+
+<p>编译后的CSS代码为：</p>
+<pre>
+a {
+  color: #F00;
+}
+
+a:visited {
+  color: #CCC;
+}
+
+a:focus {
+  color: #AC0;
+}
+
+a:hover {
+  color: #0F0;
+}
+
+a:active {
+  color: #00F;
+}
+
+</pre>
+
+<h5 id="chapter5-5">5、utilities模版</h5>
+
+<p><a href="http://compass-style.org/reference/compass/utilities/" target="_blank" rel="external">utilities模版</a>提供某些不属于其他模块的功能。</p>
+<p>比如，清除浮动：</p>
+<pre>
+@import "compass/utilities";
+
+.clearfix{
+  @include clearfix;
+}
+</pre>
+
+<h3 id="chapter6">六、Compass的Helper函数</h3>
+
+<p>Compass提供了一些补充<a href="http://compass-style.org/reference/compass/helpers/" target="_blank" rel="external">函数</a>。这些函数可以大大增强Sass的威力。</p>
+<p>例如，<code>image-width()</code> 和 <code>image-height()</code> 可以返回图片的宽和高。</p>
+<p>又例如，<code>inline-image()</code> 可以将图片转为data协议的数据。</p>
+<pre>
+@import "compass";
+
+$picWidth: image-width("pic1.png");
+$picHeight: image-height("pic1.png");
+
+.pic {
+  width: $picWidth;
+  height: $picHeight;
+}
+</pre>
+
+<p>（图片默认放在该compass项目目录里面的images文件夹里面，没有就新建一个）</p>
+<p><img src="/2017/11/28/Compass基本用法/pic4.png" alt="图片"></p>
+<p>编译后的CSS代码为：</p>
+<pre>
+.pic {
+  width: 405px;
+  height: 540px;
+}
+</pre>
+
+<p>(本文主要参考<a href="http://www.ruanyifeng.com/blog/2012/11/compass.html" target="_blank" rel="external">阮一峰老师的文章</a>)</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
