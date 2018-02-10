@@ -8,10 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="Allenmind">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="Allenmind&#39;s Blog"/>
+  <meta property="og:title" content="cURL基本使用教程"/>
   <meta property="og:description" content="这是Allenmind的个人博客" />
   <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:image" content="http://yoursite.com"/>
   
     <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
@@ -35,8 +35,7 @@
 </head>
 
   <body>
-    <!-- Archive Header -->
-<!-- Page Header -->
+    <!-- Page Header -->
 
 
 <header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
@@ -44,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">Blog Archives</p>
+          <p class="title">cURL基本使用教程</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -90,50 +89,59 @@
 </header>
 
 
-<!-- Archive List -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      
-        <div class="archive-item">
-  <a href="/2018/02/10/cURL基本使用教程/" class="post-title">
-    cURL基本使用教程
-  </a>
-  <div class="date text-muted">Posted on 2018-02-10 15:17:45</div>
-</div>
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-02-10</span>
+            <span class="time">15:19:42</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
 
-      
-        <div class="archive-item">
-  <a href="/2018/02/10/给小站弄HTTPS的踩坑过程/" class="post-title">
-    给小站弄HTTPS的踩坑过程
-  </a>
-  <div class="date text-muted">Posted on 2018-02-10 15:05:21</div>
-</div>
+<a href="/categories/网络工程/">网络工程</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-      
-        <div class="archive-item">
-  <a href="/2018/02/10/HTML5的鼠标拖拽效果/" class="post-title">
-    HTML5的鼠标拖拽效果
-  </a>
-  <div class="date text-muted">Posted on 2018-02-10 14:11:14</div>
-</div>
+<a class="tag" href="/tags/cURL/">#cURL</a>
 
-      
 
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本篇文章介绍cURL的基本使用方法<br><a id="more"></a></p>
+<h1>cURL基本使用教程</h1>
+
+<p>cURL是一个强大的命令行HTTP客户端，可以用来向目标服务器发送请求。</p>
+<p>git Bash里面就集成了cURL，在git Bash中运行下面命令即可发起相应请求：</p>
+<ul>
+<li>POST请求： <code>curl -X POST -d &#39;...&#39; http://localhost:3000 （或者 curl -d &#39;...&#39; http://localhost:3000）</code></li>
+<li>GET请求： <code>curl -X GET http://localhost:3000 （或者curl http://localhost:3000）</code></li>
+<li>DELETE请求： <code>curl -X DELETE http://localhost:3000/索引号</code></li>
+<li>PUT请求： <code>curl -X PUT -d &quot;...&quot; http://localhost:3000/索引号</code></li>
+</ul>
+<p>常用curl命令的参数：</p>
+<p>-h 查看请求参数的含义<br>-v 显示请求的信息<br>-X 选项指定其它协议<br>-d 用来输入参数  </p>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- Pagination -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-10 col-md-10 col-md-offset-1">
-      <ul class="pagination">
-          
-          
-      </ul>
-    </div>
-  </div>
-</div>
+</article>
 
 
 
