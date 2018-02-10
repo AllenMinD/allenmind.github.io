@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="给小站弄HTTPS的踩坑过程"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">给小站弄HTTPS的踩坑过程</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:240831608@qq.com">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-02-10</span>
+            <span class="time">15:12:41</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/网络工程/">网络工程</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/HTTPS/">#HTTPS</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>如何免费的让网站启用HTTPS<br><a id="more"></a></p>
+<h1>给小站弄HTTPS的踩坑过程</h1>
+
+<h3>碎碎念</h3><br>其实小站的HTTPS在去年就已经弄好了，整个过程的总结（踩坑）在那时候就已经大致写好，但是由于那时候忙于学校的课程，所以一直没发布上小站。(∵)nnn<br><br>我选择用的是Let’s Encrypt的证书来弄的HTTPS。（Let’s Encrypt 是一个于2015年推出的数字证书认证机构，将通过旨在消除当前手动创建和安装证书的复杂过程的自动化流程，为安全网站提供免费的SSL/TLS证书。）<br><br>想要为网站安装这个证书，只需要使用电子子前哨基金会EFF的<a href="https://certbot.eff.org/" target="_blank" rel="external">Certbot</a>，就可以完成。<br><br>当你进入<a href="https://certbot.eff.org/" target="_blank" rel="external">Certbot</a>的官网后，选择你网站所在服务器的服务器程序和系统类型，它就会展现出对应的安装过程。<br><br>本来我想按照这个教程，直接复制粘贴进去就没事了吧？然而是真是太天真了(∵)nnn。<br><br>在这个过程中，弹出了各种错误，然后就有了下面的记录。<br><br><h3>踩坑过程</h3>
+
+<p>流程参考网站：</p>
+<p><a href="https://coolshell.cn/articles/18094.html" target="_blank" rel="external">参考1</a><br><a href="https://certbot.eff.org/#centosrhel7-nginx" target="_blank" rel="external">参考2</a><br><a href="https://diamondfsd.com/article/e221b455-b0e7-40b7-a6c7-9bb7e3e35657" target="_blank" rel="external">参考3</a>  </p>
+<blockquote>
+<p>总的来说就是：在服务器中，先安装Certbot，然后通过Certbot来安装Let’s Encrypt的证书并应用到你的网站上。</p>
+</blockquote>
+<p>但是，在安装Certbot的过程中，可能会遇到这些问题：</p>
+<p><strong>问题1：报nginx命令不存在错误</strong><br>在输入：sudo certbot –nginx时，出现错误:</p>
+<pre>
+# Saving debug log to /var/log/letsencrypt/letsencrypt.log
+# The nginx plugin is not working; there may be problems with your existing configuration.
+# The error was: NoInstallationError()
+</pre>
+
+<p><a href="https://github.com/jaywcjlove/handbook/blob/master/CentOS/%E4%BD%BF%E7%94%A8%E5%85%8D%E8%B4%B9SSL%E8%AF%81%E4%B9%A6%E8%AE%A9%E7%BD%91%E7%AB%99%E6%94%AF%E6%8C%81HTTPS%E8%AE%BF%E9%97%AE.md" target="_blank" rel="external">解决方法</a></p>
+<p>但解决了上面那个问题后，又出现了下面的问题。</p>
+<p><strong>问题2：缺少–with-http_ssl_module</strong><br>在输入：sudo certbot –nginx时，出现错误：</p>
+<pre>
+# Saving debug log to /var/log/letsencrypt/letsencrypt.log
+# The nginx plugin is not working; there may be problems with your existing configuration.
+# The error was: PluginError('Nginx build is missing SSL module (--with-http_ssl_module).',)
+</pre>
+
+<p>提示这个错误是因为目前nginx缺少–with-http_ssl_module这个模块，我们要添加这个模块。</p>
+<p>要为nginx添加新模块就要重新编译nginx。步骤大致如下：</p>
+<ol>
+<li>找到你安装nginx的原目录  </li>
+<li>进入目录，输入命令：./configure –prefix=/usr/local/nginx –with-http_ssl_module</li>
+<li>然后是编译：输入命令 make  </li>
+<li>用新版本Nginx可执行程序覆盖旧版本可执行程序：sudo cp objs/nginx /usr/local/nginx/sbin/nginx  </li>
+<li>输入nginx -V ，应该可以看到configure arguments中有–with-http_ssl_module了  </li>
+<li>重启nginx  </li>
+</ol>
+<p>以上步骤参考了：<br><a href="https://vzone.me/875/" target="_blank" rel="external">给已经编译安装了的nginx添加模块</a><br><a href="http://blog.csdn.net/liangzai_cool/article/details/51831210" target="_blank" rel="external">添加模块</a><br>（这里要注意：原文中有个地方错了”–with_http_ssl_module”应该改成”–with-http_ssl_module”;）</p>
+<p><a href="http://www.linuxidc.com/Linux/2016-09/134907.htm" target="_blank" rel="external">nginx的安装和部署参考1</a><br><a href="https://www.cnblogs.com/taiyonghai/p/6728707.html" target="_blank" rel="external">nginx的安装和部署参考2</a>  </p>
+<p><a href="https://www.cnblogs.com/jianxie/p/3990377.html" target="_blank" rel="external">nginx命令参考</a></p>
+<p><strong>问题3：解决了上面两个问题后，现在可以运行certbot了，然是又出现问题了。在为我的域名上https的时候出现了错误</strong>：</p>
+<pre>
+Failed authorization procedure. allenmind.cn (tls-sni-01): urn:acme:error:connection :: The server could not connect to the client to verify the domain :: Connection refused
+IMPORTANT NOTES:
+ - The following errors were reported by the server:
+   Domain: allenmind.cn
+   Type:   connection
+   Detail: Connection refused
+   To fix these errors, please make sure that your domain name was
+   entered correctly and the DNS A/AAAA record(s) for that domain
+   contain(s) the right IP address. Additionally, please check that
+   your computer has a publicly routable IP address and that no
+   firewalls are preventing the server from communicating with the
+   client. If you're using the webroot plugin, you should also verify
+   that you are serving files from the webroot path you provided.
+</pre>
+
+<p>解决方法：</p>
+<ol>
+<li>出现这个错误很有可能是你的nginx正在服务，你要暂停掉你的nginx服务器（./nginx -s stop）！！！！（我在这里懵b了好久啊！！！！）</li>
+<li>如果还不行，有可能是防火墙的问题。解决方法：去开启防火墙，然后开启80和443端口（看问题4）</li>
+</ol>
+<p><strong>问题4：FirewallD is not running</strong><br><a href="https://jingyan.baidu.com/article/5552ef47f509bd518ffbc933.html" target="_blank" rel="external">解决方法参考1</a></p>
+<p><a href="https://www.v2ex.com/t/330567" target="_blank" rel="external">解决方法参考2</a></p>
+<p>开启443端口：firewall-cmd –zone=public –add-port=443/tcp –permanent</p>
+<p>开启80端口：firewall-cmd –zone=public –add-port=80/tcp –permanent</p>
+<p><a href="https://www.cnblogs.com/rainy-shurun/p/6195448.html" target="_blank" rel="external">各种centOS7各种防火墙命令</a></p>
+<p><strong>问题5：</strong>  </p>
+<pre>
+Failed authorization procedure. allenmind.cn (tls-sni-01): urn:acme:error:connection :: The server could not connect to the client to verify the domain :: Error getting validation data
+IMPORTANT NOTES:
+ - The following errors were reported by the server:
+   Domain: allenmind.cn
+   Type:   connection
+   Detail: Error getting validation data
+   To fix these errors, please make sure that your domain name was
+   entered correctly and the DNS A/AAAA record(s) for that domain
+   contain(s) the right IP address. Additionally, please check that
+   your computer has a publicly routable IP address and that no
+   firewalls are preventing the server from communicating with the
+   client. If you're using the webroot plugin, you should also verify
+   that you are serving files from the webroot path you provided.
+</pre>   
+
+<p><a href="https://community.letsencrypt.org/t/solved-tls-sni-01-error-getting-validation-data/41025" target="_blank" rel="external">解决方法</a></p>
+<p><strong>问题6：配置nginx.conf</strong><br>不用怎么配置，因为certbot已经帮你搞好了，你会发现你的 nginx.conf 文件 ，你可以发现你的文件中的 server 配置中可能被做了如下的修改：</p>
+<pre>
+listen 443 ssl; # managed by Certbot
+ssl_certificate /etc/letsencrypt/live/coolshell.cn/fullchain.pem; # managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/coolshell.cn/privkey.pem; # managed by Certbot
+include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+
+# Redirect non-https traffic to https
+if ($scheme != "https") {
+  return 301 https://$host$request_uri;
+} # managed by Certbot    
+</pre>
+
+<p><strong>问题7：</strong><br>如果碰到错误</p>
+<pre>
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:443 failed (98: Address already in use)
+</pre>
+
+<p>解决方法：<br>使用命令关闭占用80、443端口的程序<br>sudo fuser -k 80/tcp<br>sudo fuser -k 443/tcp  </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
