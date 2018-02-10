@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-02-10</span>
-            <span class="time">14:13:28</span>
+            <span class="time">14:17:32</span>
           </span>
           
           <!--  Categories  -->
@@ -134,9 +134,8 @@
 </ol>
 <h3 id="chapter1">1. 概述</h3><br>前段时间写了一篇<a href="https://allenmind.cn/2017/10/22/%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/" target="_blank" rel="external">基于原生Javascript实现鼠标拖拽效果</a>的总结，那时候有个感受就是：鼠标拖拽的实现太麻烦了。如果利用原生js来实现拖拽效果的话，我们首先应该把元素偏移量（offset）、客户端大小（client）等属性弄清楚，然后在编写js的时候还要经过一些计算，才能实现。<br><br>但是，其实HTML5早就为我们准备了拖拽效果的功能，实现起来非常的简单、方便。下面来总结一下用HTML5实现鼠标拖拽效果。<br><br><h3 id="chapter2">2. 一些重要的属性和事件</h3><br>1. <code>draggable属性</code>：设定元素是否可拖放<br>2. <code>ondragstart属性（事件）</code>：当被拖元素开始被拖动时，所发生的事情。一般是设定被拖元素的数据（该事件作用在被拖元素上）<br>3. <code>ondragenter属性（事件）</code>：当被拖元素进入可放置的区域时，所发生的事情(默认不能放在元素里，所以要取消默认事件)（该事件作用来可放置区域上）<br>4. <code>ondragover属性（事件）</code>：当被拖元素在可放置区域上移动时，所发生的事情(默认不能放在元素里，所以要取消默认事件)（该事件作用来可放置区域上）<br>5. <code>ondrop属性（事件）</code>：当放下被拖数据时所发生的事情（该事件作用来可放置区域上）<br>6. <code>dataTransfer.setData(&quot;名字&quot;, 值)方法</code>：设置被拖元素所携带的值（一般是被拖元素自身的html代码，也可以是其id等等），并为这个“值”设置一个“名字”<br>7. <code>dataTransfer.getData(&quot;名字&quot;)方法</code>：获取被拖元素所携带的值（利用那个“值”的“名字”）<br><br><a href="http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">参考</a><br><br><h3 id="chapter3">3. 实例</h3>
 
-<pre><code>&lt;p data-height=&quot;265&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;BYpoLV&quot; data-default-tab=&quot;html,result&quot; data-user=&quot;AllenMinD&quot; data-embed-version=&quot;2&quot; data-pen-title=&quot;HTML5 drag &amp;drop&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;https://codepen.io/AllenMinD/pen/BYpoLV/&quot;&gt;HTML5 drag &amp;drop&lt;/a&gt; by aLLeNxD (&lt;a href=&quot;https://codepen.io/AllenMinD&quot;&gt;@AllenMinD&lt;/a&gt;) on &lt;a href=&quot;https://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-&lt;script async src=&quot;https://production-assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>点<a href="https://codepen.io/AllenMinD/pen/BYpoLV" target="_blank" rel="external">这里</a>查看完整的代码和效果。</p>
+<p></p><p data-height="432" data-theme-id="0" data-slug-hash="BYpoLV" data-default-tab="html,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="HTML5 drag &drop" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/BYpoLV/" target="_blank" rel="external">HTML5 drag &amp;drop</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
         </div>
       </div>
