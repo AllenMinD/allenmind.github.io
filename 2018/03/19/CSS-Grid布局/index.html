@@ -109,7 +109,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-19</span>
-            <span class="time">13:42:00</span>
+            <span class="time">22:21:34</span>
           </span>
           
           <!--  Categories  -->
@@ -148,15 +148,22 @@
 <li><a href="https://www.youtube.com/watch?v=jV8B24rSN5o&amp;t=551s" target="_blank" rel="external">当然少不了基础视频教程啦（需翻墙）</a></li>
 </ul>
 <p>下面是我对CSS Grid的小结，方便速查使用。</p>
-<p><strong>6个重要概念</strong>：</p>
+<p>小导航：</p>
+<ul>
+<li><a href="#chapter1-1">6个重要概念</a></li>
+<li><a href="#chapter1-2">网格容器的属性</a></li>
+<li><a href="#chapter1-3">网格项的属性</a></li>
+</ul>
+<h5 id="chapter1-1"><strong>1-1. 6个重要概念</strong></h5>
+
 <p><code>网格容器（grid container）</code>：网格项的直接父元素</p>
 <p><code>网格项（grid item）</code>：网格容器的直接子元素</p>
 <p><code>网格线（grid line）</code>：垂直的网格线叫列网格线，水平的叫行网格线</p>
 <p><code>网格轨道（grid track）</code>：两条网格线之间的空间。可以看作是行或列</p>
 <p><code>网格单元格（grid cell）</code>：由相邻的列网格线和相邻的行网格线包围的区域</p>
 <p><code>网格区域（grid area）</code>：由不相邻的列网格线和不相邻的行网格线包围的区域。一个网格区域里面包含多个网格单元格</p>
-<p><strong>属性</strong>：</p>
-<p>网格容器的属性：</p>
+<h5 id="chapter1-2"><strong>1-2. 网格容器的属性</strong></h5>
+
 <ul>
 <li>【display】：<code>grid | inline-grid | subgrid</code> 将元素定义为网格容器 </li>
 <li>【grid-template-columns】：<code>&lt;track-size&gt; ... | [line-name] &lt;track-size&gt; ...</code> 设置列网格轨道的数目和大小（列网格线名字）</li>
@@ -175,7 +182,8 @@
 <li>【auto-auto-flow】：<code>row | column | dense</code> 控制自动布局算法如何工作</li>
 <li>【grid】：【grid-template-rows】、【grid-template-columns】、【grid-template-areas】、【grid-auto-rows】、【grid-auto-columns】和【auto-auto-flow】的简写。也可以是none，意思是将所有子属性设为其初值</li>
 </ul>
-<p>网格项的属性：</p>
+<h5 id="chapter1-3"><strong>1-3. 网格项的属性</strong></h5>
+
 <ul>
 <li>【grid-column-start】：<code>&lt;line-number&gt; | &lt;line-name&gt; | span &lt;number&gt; | span &lt;line-name&gt; | auto</code> 设置网格项的左边列网格线的位置</li>
 <li>【grid-column-end】：<code>&lt;line-number&gt; | &lt;line-name&gt; | span &lt;number&gt; | span &lt;line-name&gt; | auto</code> 设置网格项的右边列网格线的位置</li>
