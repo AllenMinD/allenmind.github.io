@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Javascript中关于this的总结"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Javascript中关于this的总结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-03-25</span>
+            <span class="time">22:40:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Javascript/">Javascript</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/this/">#this</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用，随着函数使用场合的不同，this的值会发生变化，但是总有一个原则，那就是**this指的是，调用函数的那个对象<br><a id="more"></a></p>
+<h1>Javascript中的this总结</h1>
+
+<p><strong>目录</strong></p>
+<ol>
+<li><a href="#chapter1">this是啥？</a></li>
+<li><a href="#chapter2">this的常见情况总结</a></li>
+<li><a href="#chapter3">参考资料</a></li>
+</ol>
+<h2 id="chapter1">1. this是啥？</h2>
+
+<p>this是啥？这里直接引用阮一峰老师的概括：</p>
+<blockquote>
+<p>this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用，随着函数使用场合的不同，this的值会发生变化，但是总有一个原则，那就是<strong>this指的是，调用函数的那个对象</strong>。</p>
+</blockquote>
+<h2 id="chapter2">2. this的常见情况总结</h2>
+
+<p><strong>1）在全局环境中（不在函数体里面）的this指向全局对象（window）</strong></p>
+<pre>
+var a = "我是全局环境中";
+
+function foo() {
+    return this.a;
+}
+
+console.log(foo()); // "我是全局环境中"
+</pre>
+
+<p><strong>2）在有名字的函数中，当函数被普通调用时：若在非严格模式，this指向全局对象（window）；在严格模式下，this等于它进入执行上下文时的值，如果this没有被执行上下文定义，则为undefined</strong></p>
+<pre>
+//   非严格模式
+function foo() {
+    return this;  // this => window对象
+}
+
+console.log(foo());  // 返回window对象
+
+
+//   严格模式
+function foo1() {
+    "use strict";
+    return this;  // this => undefined
+}
+
+console.log(foo1());  // undefined
+</pre>
+
+<p><strong>3）在一般的匿名函数中的this也指向全局对象（window），因为匿名函数的执行环境具有全局性（当这个匿名函数被作为对象的方法调用时，看到第4点）</strong></p>
+<pre>
+var a = "我是全局环境中";
+
+function foo() {
+    return function() {
+        return this.a; // this => window
+    }
+}
+
+console.log(foo()());   // "我是全局环境中"
+</pre>
+
+<p><strong>4）（无论这个函数是匿名函数还是已经定义了的非匿名函数，）当函数被作为某个对象的方法调用时，这个函数里面的this指向这个对象。（还有一种特殊情况！请看第5点）</strong></p>
+<pre>
+//  例子1（对象的方法是一个匿名函数）
+var a = "我是全局环境中";
+
+var obj = {
+    a: "我是obj对象中的属性",
+    getA: function() {
+        return this.a; // this => obj
+    }
+}
+
+console.log(obj.getA());  // "我是obj对象中的属性"
+
+// 例子2（对象的方法是一个已经定义了的函数）
+var a = "我是全局环境中";
+
+function foo1() {
+    return this.a; // this => obj
+}
+
+var obj = {
+    a: "我是obj对象中的属性",
+    getA: foo1
+}
+
+console.log(obj.getA());  // "我是obj对象中的属性"
+</pre>
+
+<p><strong>5）（无论这个函数是匿名函数还是已经定义了的非匿名函数，）当函数被作为某个对象的方法调用，与此同时，若这个对象把这个方法的引用赋给了一个变量，再通过这个变量来调用那个函数的话，那么函数里的this不再指向那个对象，而是指向了全局对象（window）</strong></p>
+<pre>
+var str = 'AllenMind';
+
+function foo() {
+    return this.str;
+}
+
+var obj = {
+    str: 'Jolin',
+    prop: {
+        str: 'Amy',
+        getStr: function() {
+            return this.str;
+        },
+        getFoo: foo
+    }
+}
+
+// 当函数被作为某个对象的方法调用时，this等于那个对象，所以这个函数里面的this指向对象prop
+// 所以this.str相当于prop.str，所以结果显示Amy
+console.log(obj.prop.getStr());  // "Amy"
+console.log(obj.prop.getFoo());  // "Amy"
+
+// 当函数被作为某个对象obj的方法调用，
+// 与此同时，obj把这个方法的引用赋值给一个变量，
+// 此时的this不再等于那个对象，而是指向了全局对象（window）
+var test = obj.prop.getStr;
+console.log(test());  // "Allenmind"
+
+var test2 = obj.prop.getFoo;
+console.log(test2());  // "Allenmind"
+
+function bar() {
+    var test3 = obj.prop.getStr;
+    var test4 = obj.prop.getFoo;
+    console.log(test3());  // "Allenmind"
+    console.log(test4());  // "Allenmind"
+}
+
+bar();
+</pre>
+
+<p><strong>6）函数被作为DOM事件处理函数时，函数里面的this指向绑定事件处理函数的元素（<code>this === event.currentTarget</code>）</strong></p>
+<pre>
+var element = document.getElementById("el");
+
+el.onclick = function(event) {
+    console.log(this === event.currentTarget);  // true，this => element
+}
+</pre>
+
+<p><strong>7）函数被作为构造函数时（关键字new后面的函数），this指向正在被创建的新对象</strong></p>
+<pre>
+function myConstructor() {
+    this.a = "我是构造函数里的属性";  // this => 正在被创建的对象，即（this => obj）
+}
+
+var obj = new myConstructor();
+
+console.log(obj.a);  // 显示"我是构造函数里的属性"
+</pre>
+
+<p><strong>8）用<code>call(对象，参数1，参数2，...，参数n)</code> / <code>apply(对象，[参数1，参数2，...，参数n])</code>来调用的函数，this指向call() / apply()所指定的对象</strong></p>
+<pre>
+function foo() {
+    return this.a;  // this => call()指定的对象（即this => obj）
+}
+
+var obj = {
+    a: "我是对象obj里的属性"
+};
+
+// call()指定了this指向对象obj
+console.log(foo.call(obj)); // 显示"我是对象obj里的属性"
+</pre>
+
+<p>（PS：以上是用到this关键字的常见场景。另外还有一些场景还没介绍到，如：箭头函数里的this、bind()方法中的this，这两个概念我还不是很懂…所以以后再回来填这个坑吧。）</p>
+<h2 id="chapter3">3. 参考资料</h2>
+
+<ol>
+<li><a href="">MDN文档</a></li>
+<li><a href="">阮一峰老师的this总结</a></li>
+<li>《Javascript高级程序设计 第3版》P182</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

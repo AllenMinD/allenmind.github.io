@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="BFC探究"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">BFC探究</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-03-23</span>
+            <span class="time">22:40:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CSS/">CSS</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/BFC/">#BFC</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>关于BFC（块级格式化上下文）的探究<br><a id="more"></a></p>
+<h1>BFC探究</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">BFC的概念</a></li>
+<li><a href="#chapter2">什么情况下会产生BFC</a></li>
+<li><a href="#chapter3">一个BFC中的规则</a></li>
+<li><a href="#chapter4">BFC的应用场景</a></li>
+<li><a href="#chapter5">本文的参考资料</a></li>
+</ol>
+<h2 id="chapter1">1. BFC的概念</h2>
+
+<p>BFC(全称：Block Formatting Context, 直译：块级格式化上下文）。</p>
+<p>又是“context”这个单词，谷歌翻译会把它翻译为“上下文、前后关系、景况”，但是个人认为把它翻译为“环境”更好理解一点。</p>
+<p>每个context（“环境”）里面总会有一些规则，用来规范在context里面的东西的行为。好比我们在一个学校里上学，“学校”就是一个环境（context），而这个环境里面，我们要遵守这间学校的校规：不能作弊、不能早恋、不能叫外卖、不能不可描述…而这些“校规”，就是这个环境（context）里面的一些“规则”。</p>
+<p>那么BFC这个context里面有一些怎样的规则？这些规则是用来规范什么行为的呢？<strong>答：BFC里面的规则是一些关于渲染的规则，这些规则规定了在一个块级的盒子模型里面的元素如何渲染（放在什么位置）。</strong></p>
+<h2 id="chapter2">2. 什么情况下会产生BFC</h2>
+
+<p>一个元素只要满足下面<code>任意一个</code>条件，就可以产生BFC。</p>
+<ol>
+<li>浮动元素（<code>float属性</code>为非none）</li>
+<li>绝对定位元素（<code>position属性</code>为absolute或fixed）</li>
+<li>块容器（<code>display属性</code>为inline-block, flex, table-cell, table-caption 或者 inline-flex中的其中一个）</li>
+<li><code>overflow属性</code>不为visible的元素</li>
+</ol>
+<h2 id="chapter3">3. 一个BFC中的规则</h2>
+
+<p>终于到重头戏了，我们来看看在一个BFC里面有什么规则。</p>
+<ol>
+<li>【盒子的排列】规则：在一个BFC中，每个盒子会从包含块的<code>顶部</code>开始，<code>垂直</code>的一个接一个排列</li>
+<li>【对齐（左对齐）】规则：<code>子元素的左外边框</code>与<code>父元素（或者说“包含块”）左边框（即：border-left）</code>对齐。</li>
+<li>【关于浮动元素的渲染】规则：浮动和清除浮动只会应用于<code>同一个</code>BFC内的元素。浮动不会影响其他BFC中的元素，而清除浮动只能清除同一BFC中在它前面的元素的浮动。另外，BFC可以包裹住浮动元素</li>
+<li>【垂直外边距折叠】规则：“垂直外边距折叠”这个现象只会在<code>同一个</code>BFC中的两个<code>相邻</code>的<code>块级元素</code>之间发生。</li>
+<li>【隔离】规则：BFC相当于一个隔离的<code>独立容器</code>，容器里面（或者说BFC里面）的元素不会影响到外面的元素</li>
+</ol>
+<h2 id="chapter4">4. BFC的应用场景</h2>
+
+<p>（为了方便和直观，下面的例子都使用overflow: hidden的方式来产生BFC）</p>
+<ul>
+<li>使用BFC来防止外边距折叠</li>
+</ul>
+<p>原理：对于在同一BFC里的两个相邻的块元素，把其中一个块元素用一个div去包住它，然后把div的overflow设为hidden使其产生一个新的BFC，这样的话原本那两个相邻的块元素就不在同一个BFC里面了，所以它们的外边距也就不会发生折叠了。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="GxEQrq" data-default-tab="js,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="BFC实验室2" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/GxEQrq/" target="_blank" rel="external">BFC实验室2</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<ul>
+<li>使用BFC来包含浮动，防止出现父元素“坍塌”现象</li>
+</ul>
+<p>对于用一个父元素，如果里面的子元素变成了浮动元素，那么父元素的高度就会发生“坍塌”，这是因为它的子元素是浮动元素（float属性为非none），这就使得子元素产生了一个新的BFC，而由上面的【规则5】可知，一个BFC相当于一个独立的容器，容器里面的元素不会影响到外面的元素，所以子元素并不会影响到父元素的高度，这就是父元素的高度为什么不被浮动的子元素“撑起来”的原因。</p>
+<p>而我们的解决方法也是用回BFC来解决：我们只需要给父元素也创建一个BFC，让浮动的子元素也处于一个BFC里面，这就解决了坍塌的问题了。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="BrWgOX" data-default-tab="js,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="BFC实验室1" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/BrWgOX/" target="_blank" rel="external">BFC实验室1</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<ul>
+<li>使用BFC来防止文字环绕</li>
+</ul>
+<p>为p元素创建BFC，由于浮动只会影响同一BFC里的其他元素，而现在p元素和那个浮动的元素已经不在同一BFC了，所以p元素里的文字不会环绕。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="BrZYrd" data-default-tab="html,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="BFC实验室3" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/BrZYrd/" target="_blank" rel="external">BFC实验室3</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<ul>
+<li>在多列布局中使用BFC，防止最后一列被“挤到”下一行去</li>
+</ul>
+<p>（这个例子不好理解，而且可以使用flex布局来代替解决，所以这里就不做深究了。）</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="rdwJrR" data-default-tab="css,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="BFC实验室4" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/rdwJrR/" target="_blank" rel="external">BFC实验室4</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="chapter5">5. 本文的参考资料</h2>
+
+<ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context" target="_blank" rel="external">MDN文档</a></li>
+<li><a href="https://www.w3cplus.com/css/understanding-block-formatting-contexts-in-css.html" target="_blank" rel="external">《Understanding Block Formatting Contexts in CSS》中文版</a></li>
+<li><a href="https://www.sitepoint.com/understanding-block-formatting-contexts-in-css/" target="_blank" rel="external">《Understanding Block Formatting Contexts in CSS》英文原版</a></li>
+<li><p><a href="https://www.w3.org/TR/CSS21/visuren.html#block-formatting" target="_blank" rel="external">W3C规范</a>  </p>
+<blockquote>
+<p>9.4.1 Block formatting contexts<br> Floats, absolutely positioned elements, block containers (such as inline-blocks, table-cells, and table-captions) that are not block boxes, and block boxes with ‘overflow’ other than ‘visible’ (except when that value has been propagated to the viewport) establish new block formatting contexts for their contents.</p>
+<p>In a block formatting context, boxes are laid out one after the other, vertically, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the ‘margin’ properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.</p>
+<p>In a block formatting context, each box’s left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch). This is true even in the presence of floats (although a box’s line boxes may shrink due to the floats), unless the box establishes a new block formatting context (in which case the box itself may become narrower due to the floats).</p>
+<p>For information about page breaks in paged media, please consult the section on allowed page breaks.</p>
+</blockquote>
+</li>
+<li><a href="https://www.jianshu.com/p/acf76871d259" target="_blank" rel="external">以为网友的总结</a></li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

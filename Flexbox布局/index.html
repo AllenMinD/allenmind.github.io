@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Flexbox布局"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Flexbox布局</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-11-09</span>
+            <span class="time">22:40:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/CSS3/">CSS3</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Flexbox/">#Flexbox</a> <a class="tag" href="/tags/弹性布局/">#弹性布局</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>Flexbox弹性布局小总结<br><a id="more"></a></p>
+<h1>Flexbox布局</h1>  
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">Flexbox语法</a>  </li>
+<li><a href="#chapter2">Flexbox应用实例</a>  </li>
+</ol>
+<p></p><h3 id="chapter1">一、Flexbox语法</h3><br>具体参考阮一峰老师的介绍：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">戳我</a>  <p></p>
+<p>我来小结一下Flexbox有哪些属性，方便速查：<br>（在“ | ”左右的值表示属性的可选值，在“ || ”左右的表示的是两个属性）  </p>
+<ul>
+<li><p>以下6个属性设置到【容器】上：  </p>
+<ul>
+<li><code>flex-direction</code>: row | row-reverse | column | column-reverse;  // 主轴的方向</li>
+<li><code>flex-wrap</code>: nowrap |  wrap |  wrap=reverse;  //  是否”换行”</li>
+<li><code>flex-flow</code>: (flex-direction) || (flex-wrap);  // flex-direction和flex-wrap的合体简写</li>
+<li><code>justify-content</code>: flex-start | flex-end | center | space-between | space-around;  // 主轴上的对齐方式</li>
+<li><code>align-items</code>: flex-start |  flex-end | center| baseline | stretch;  // 交叉轴上的对齐方式</li>
+<li><code>align-content</code>: flex-start | flex-end | center | space-between | space-around | stretch;  // 定义了多根轴线时的对齐方式  </li>
+</ul>
+</li>
+<li><p>以下6个属性设置到【项目】上：  </p>
+<ul>
+<li><code>order</code>: (integer);  // 项目的排列顺序。默认为0，数值越小越靠前。</li>
+<li><code>flex-grow</code>: (number);  // 放大比例。默认为0，即如果存在剩余空间，也不放大</li>
+<li><code>flex-shrink</code>: (number);  // 缩小比例。默认为1，即如果空间不足，就等比例缩小</li>
+<li><code>flex-basis</code>: (length) | auto;  // 在分配多余空间之前，项目占据的主轴空间（main size）</li>
+<li><code>flex</code>: none | [(flex-grow) || (flex-shrink) || (flex-basis)];  // 默认是0 1 auto (后两个属性可选)</li>
+<li><code>align-self</code>: auto | flex-start | flex-end | center |  baseline | stretch;  // 允许单个项目与其他项目不一样的对齐方式</li>
+</ul>
+</li>
+</ul>
+<p></p><h3 id="chapter2">二、Flexbox实例应用</h3><br>关于Flexbox的实例应用具体还是看阮一峰老师的介绍：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">再戳我</a>  <p></p>
+<p>我继续来小结一下关于Flexbox的实例应用，方便速查（点进去就是例子，按F12看代码）：  </p>
+<ul>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox2.html" target="_blank" rel="external">骰子布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-1.html" target="_blank" rel="external">网格布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-2.html" target="_blank" rel="external">圣杯布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-3.html" target="_blank" rel="external">输入框（表单）布局</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-4.html" target="_blank" rel="external">悬挂式布局（左边头像，右边名字和内容）</a></li>
+<li><a href="https://allenmind.github.io/flexbox-exmaple/LearnFlexbox3-5.html" target="_blank" rel="external">固定页脚到视口底部</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

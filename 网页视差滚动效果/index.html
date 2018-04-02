@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="网页视差滚动效果"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">网页视差滚动效果</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-10-22</span>
+            <span class="time">22:40:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/网页效果技巧/">网页效果技巧</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/视差滚动/">#视差滚动</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>2种实现网页视差滚动效果的方法以及其扩展效果<br><a id="more"></a></p>
+<h1>网页视差滚动效果</h1>
+
+<p><strong>目录</strong>    </p>
+<ol>
+<li><a href="#chapter1">利用CSS的background-attachment属性实现视差滚动（纯CSS方法）</a>  </li>
+<li><a href="#chapter2">在1的基础上加上CSS3过度特效</a>  </li>
+<li><a href="#chapter3">利用层次滚动速度的差异实现视差滚动（js方法）</a>  </li>
+<li><a href="#chapter4">在3的基础上实现上下视差滚动</a></li>
+</ol>
+<h3 id="chapter1">1. 利用CSS的background-attachment属性实现视差滚动</h3>
+
+<ul>
+<li><p></p><h5>我们来重新再来熟悉一下background属性（纯css方法）</h5><br>  <code>background-position</code>: 设置背景图像的起始位置<br>  <code>background-repeat</code>: 设置是否及如何重复背景图像<br>  <code>background-size</code>: 规定背景图像的尺寸<br>  <code>background-attachment</code>: 设置背景图像是否固定或者随着页面的其余部分滚动  <p></p>
+<p>  具体看<a href="http://www.w3school.com.cn/cssref/pr_background.asp" target="_blank" rel="external">这里</a>  </p>
+</li>
+<li><p></p><h5>重点来关注一下background-attachment属性</h5><br>  <code>background-attachment</code>有3个参数：<br>  <code>scroll</code>：默认值。背景图像会随着页面其余部分的滚动而移动。<br>  <code>fixed</code>:当页面的其余部分滚动时，背景图像不会移动。<br>  <code>inherit</code>:规定应该从父元素继承 background-attachment 属性的设置。  <p></p>
+<p>  我们就是要利用background-attachment: fixed；来实现视差滚动效果。大致步骤是：  </p>
+<ol>
+<li>创建3个div，并分别给这3个div添加背景图（background-image）  </li>
+<li><p>设置把3个背景图的<code>background-attachment</code>设置成<code>fixed</code><br>代码：  </p>
+<pre>
+.section1,
+.section2,
+.section3 {
+height: 800px;
+width: 1000px;
+margin: 0 auto;
+font: 18px "Microsoft YaHei";
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;  /* 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。*/
+background-attachment: fixed;  /** 这步是关键！！！ */
+}
+.section1 {
+background-image: url("20.jpg");
+}
+.section2 {
+background-image: url("30.jpg");
+}
+.section3 {
+background-image: url("43.jpg");
+} 
+</pre>
+
+<p>具体看： <a href="https://allenmind.github.io/parallax-scroll/parallax.html" target="_blank" rel="external">这里</a></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="chapter2">2. 在1的基础上加上CSS3过度特效</h3>
+
+<ul>
+<li><h5>简单来说，就是在scroll事件上添加一些动画事件： 滚动到页面某个值后会触发一个CSS3动画，这也是众多视差滚动中常见的一种。</h5>  </li>
+<li><h5>首先来熟悉一下CSS3的过渡特效(transition属性)</h5><br>  看<a href="http://www.w3school.com.cn/cssref/pr_transition.asp" target="_blank" rel="external">这里</a>  </li>
+<li><h5>具体结果和代码</h5><br>  看<a href="https://allenmind.github.io/parallax-scroll/parallax2.html" target="_blank" rel="external">这里</a>  </li>
+</ul>
+<h3 id="chapter3">3. 利用层次滚动速度的差异实现视差滚动（js方法）</h3>  
+
+<ul>
+<li><p></p><h5>来普及一波原理：</h5><br>  <strong>让多层背景以不同的速度移动</strong>，形成立体的运动效果，带来非常出色的视觉体验。  <p></p>
+<p>  举个栗子：<br>  在超级马里奥这个游戏中，当玩家操控马里奥移动时，<br>  砖块和水管跟马里奥在同一层次（我们暂且称为“前景层”或“近景层”），这一层移动速度最块。<br>  天上的白云为另一层次（称为“中间层”），移动速度中等。<br>  背后的小山丘是最后一层（称为“背景层”），速度最慢。<br>  三个层次按照不同的速度移动，就会产生一种立体的视差效果。  </p>
+</li>
+<li><h5>核心代码：</h5><br>  在页面滚动过程中，我们获取页面的scrollTop的值，根据不同参数值去设置各自scene的top值，这样滚动页面的时候，不同的速度就出来了  <pre>
+      function onScroll() {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+        //  背景层、中间层、前景层按照不同的速度移动，从而产生视差效果
+        sceneBack.style.top = old_top1 + scrollTop*0.9 + "px"; //  背景层（速度最慢）
+        sceneCenter.style.top = old_top2 + scrollTop*0.5 + "px"; //中间层（速度中等）
+        sceneFront.style.top = old_top3 + scrollTop*0.3 + "px"; // 前景层（速度最快）
+      }
+  </pre>  </li>
+<li><h5>具体结果和代码</h5><br>  看<a href="https://allenmind.github.io/parallax-scroll/parallax3.html" target="_blank" rel="external">介里</a></li>
+</ul>
+<p></p><h3 id="chapter4">4. 在3的基础上实现上下视差滚动</h3><br>“上下视差滚动”中的“上下”的意思就是，在页面向下滚动的过程中，有一些元素看上去是“向上”移动的，同时有另一些元素看上去是“向下”移动的。  <p></p>
+<p>实现这个效果的原理和3中介绍的是一样的，只不过不是所有的元素都是往上升，而是一些元素上升，一些元素下沉。在计算top值的时候，不是“加上”，变成“减去”scrollTop就会有相应的效果。所以就有以下计算公式：  </p>
+<pre>
+newTop1 = oldTop1 + scrollTop * x1 ;   (x1是个系数)
+newTop2 = oldTop2 - scrollTop * x2 ;   (x2是个系数)
+</pre>
+
+<p>这里要注意就是，如果我们想要两个元素在某一时刻滚动到<code>同一水平线</code>上的话，即要使：<code>newTop1 == newTop2</code>。加入oldTop1一开始为-1000px，oldTop2一开始为1000px，并要求滚动到1000px时，两个元素处在同一水平线上（即scrollTop为1000px），那么代入解下方程即可得到x1为2，x2为0。所以代码变为：  </p>
+<pre>
+    function onScroll() {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; 
+      //  按照不同的速度移动，从而产生视差效果
+      img1.style.top = old_top1 + scrollTop*2 + "px"; //  图片1向上移动
+      img2.style.top = old_top2 - scrollTop*0 + "px"; //  由于视差效果，当图片1向上移动，图片2只要按照原来速度（跟着滚动条滚动）即可营造视差效果，而且这样就可以把两个图片在某一时刻处于同一水平线上
+    }
+</pre>
+
+<p>具体效果和代码请看：<br><a href="https://allenmind.github.io/parallax-scroll/parallax4.html" target="_blank" rel="external">这里</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

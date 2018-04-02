@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="HTML5的鼠标拖拽效果"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">HTML5的鼠标拖拽效果</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-02-10</span>
+            <span class="time">22:40:33</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/网页效果技巧/">网页效果技巧</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/HTML5/">#HTML5</a> <a class="tag" href="/tags/鼠标拖拽/">#鼠标拖拽</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>利用HTML5的drag&amp;drop实现鼠标拖拽效果<br><a id="more"></a></p>
+<h1>鼠标拖拽效果手把手教学（HTML5版本）</h1>
+
+<p><strong>目录</strong>  </p>
+<ol>
+<li><a href="#chapter1">概述</a>  </li>
+<li><a href="#chapter2">一些重要的属性和事件</a>  </li>
+<li><a href="#chapter">实例</a>  </li>
+</ol>
+<h3 id="chapter1">1. 概述</h3><br>前段时间写了一篇<a href="https://allenmind.cn/2017/10/22/%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/">基于原生Javascript实现鼠标拖拽效果</a>的总结，那时候有个感受就是：鼠标拖拽的实现太麻烦了。如果利用原生js来实现拖拽效果的话，我们首先应该把元素偏移量（offset）、客户端大小（client）等属性弄清楚，然后在编写js的时候还要经过一些计算，才能实现。<br><br>但是，其实HTML5早就为我们准备了拖拽效果的功能，实现起来非常的简单、方便。下面来总结一下用HTML5实现鼠标拖拽效果。<br><br><h3 id="chapter2">2. 一些重要的属性和事件</h3><br>1. <code>draggable属性</code>：设定元素是否可拖放<br>2. <code>ondragstart属性（事件）</code>：当被拖元素开始被拖动时，所发生的事情。一般是设定被拖元素的数据（该事件作用在被拖元素上）<br>3. <code>ondragenter属性（事件）</code>：当被拖元素进入可放置的区域时，所发生的事情(默认不能放在元素里，所以要取消默认事件)（该事件作用来可放置区域上）<br>4. <code>ondragover属性（事件）</code>：当被拖元素在可放置区域上移动时，所发生的事情(默认不能放在元素里，所以要取消默认事件)（该事件作用来可放置区域上）<br>5. <code>ondrop属性（事件）</code>：当放下被拖数据时所发生的事情（该事件作用来可放置区域上）<br>6. <code>dataTransfer.setData(&quot;名字&quot;, 值)方法</code>：设置被拖元素所携带的值（一般是被拖元素自身的html代码，也可以是其id等等），并为这个“值”设置一个“名字”<br>7. <code>dataTransfer.getData(&quot;名字&quot;)方法</code>：获取被拖元素所携带的值（利用那个“值”的“名字”）<br><br><a href="http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/" target="_blank" rel="external">参考</a><br><br><h3 id="chapter3">3. 实例</h3>
+
+<p></p><p data-height="432" data-theme-id="0" data-slug-hash="BYpoLV" data-default-tab="html,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="HTML5 drag &drop" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/BYpoLV/" target="_blank" rel="external">HTML5 drag &amp;drop</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
