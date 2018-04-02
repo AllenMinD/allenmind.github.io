@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/03/29/%E5%90%AF%E7%A4%BA%E5%BD%95/</loc>
+    <lastmod>2018-03-29T11:39:38.378Z</lastmod>
+    <data>
+        <display>
+        <title>启示录</title>
+        <pubTime>2018-03-29T11:39:35.000Z</pubTime>
+        
+        <tag>启示录</tag>
+         
+         
+           
+             
+              <breadCrumb title="Think" url="https://allenmind.cn/categories/Think/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/03/25/Javascript%E4%B8%AD%E5%85%B3%E4%BA%8Ethis%E7%9A%84%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-03-25T13:33:17.651Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript中关于this的总结</title>
+        <pubTime>2018-03-25T12:56:49.000Z</pubTime>
+        
+        <tag>this</tag>
+         
+         
+           
+             
+              <breadCrumb title="Javascript" url="https://allenmind.cn/categories/Javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/03/23/BFC%E6%8E%A2%E7%A9%B6/</loc>
+    <lastmod>2018-03-25T12:57:28.914Z</lastmod>
+    <data>
+        <display>
+        <title>BFC探究</title>
+        <pubTime>2018-03-23T14:19:46.000Z</pubTime>
+        
+        <tag>BFC</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS" url="https://allenmind.cn/categories/CSS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/03/19/CSS-Grid%E5%B8%83%E5%B1%80/</loc>
+    <lastmod>2018-03-19T05:50:34.070Z</lastmod>
+    <data>
+        <display>
+        <title>CSS Grid布局</title>
+        <pubTime>2018-03-19T05:40:11.000Z</pubTime>
+        
+        <tag>Grid布局</tag>
+         
+        <tag>网格布局</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS3" url="https://allenmind.cn/categories/CSS3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/02/10/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2018-02-10T07:19:33.097Z</lastmod>
+    <data>
+        <display>
+        <title>cURL基本使用教程</title>
+        <pubTime>2018-02-10T07:17:45.000Z</pubTime>
+        
+        <tag>cURL</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络工程" url="https://allenmind.cn/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/02/10/%E7%BB%99%E5%B0%8F%E7%AB%99%E5%BC%84HTTPS%E7%9A%84%E8%B8%A9%E5%9D%91%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2018-02-10T07:09:20.686Z</lastmod>
+    <data>
+        <display>
+        <title>给小站弄HTTPS的踩坑过程</title>
+        <pubTime>2018-02-10T07:05:21.000Z</pubTime>
+        
+        <tag>HTTPS</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络工程" url="https://allenmind.cn/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2018/02/10/HTML5%E7%9A%84%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2018-02-10T06:17:20.243Z</lastmod>
+    <data>
+        <display>
+        <title>HTML5的鼠标拖拽效果</title>
+        <pubTime>2018-02-10T06:11:14.000Z</pubTime>
+        
+        <tag>HTML5</tag>
+         
+        <tag>鼠标拖拽</tag>
+         
+         
+           
+             
+              <breadCrumb title="网页效果技巧" url="https://allenmind.cn/categories/%E7%BD%91%E9%A1%B5%E6%95%88%E6%9E%9C%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/28/Compass%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2017-11-28T07:07:17.920Z</lastmod>
+    <data>
+        <display>
+        <title>Compass基本用法</title>
+        <pubTime>2017-11-28T06:56:14.000Z</pubTime>
+        
+        <tag>Compass</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS工具" url="https://allenmind.cn/categories/CSS%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/26/SASS%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2017-11-26T13:30:13.891Z</lastmod>
+    <data>
+        <display>
+        <title>SASS常用语法</title>
+        <pubTime>2017-11-26T13:17:26.000Z</pubTime>
+        
+        <tag>SASS</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS工具" url="https://allenmind.cn/categories/CSS%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/19/CSS3%E5%B0%8F%E7%BB%93/</loc>
+    <lastmod>2017-11-19T06:58:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>CSS3小结</title>
+        <pubTime>2017-11-19T06:18:48.000Z</pubTime>
+        
+        <tag>CSS3基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS3" url="https://allenmind.cn/categories/CSS3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/11/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-11-12T13:41:02.052Z</lastmod>
+    <data>
+        <display>
+        <title>js作用域总结</title>
+        <pubTime>2017-11-11T07:01:55.000Z</pubTime>
+        
+        <tag>作用域链</tag>
+         
+        <tag>执行环境</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/12/js%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2017-11-12T08:46:11.393Z</lastmod>
+    <data>
+        <display>
+        <title>js事件总结</title>
+        <pubTime>2017-11-12T07:10:54.000Z</pubTime>
+        
+        <tag>事件</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/09/Flexbox%E5%B8%83%E5%B1%80/</loc>
+    <lastmod>2017-11-09T08:15:23.824Z</lastmod>
+    <data>
+        <display>
+        <title>Flexbox布局</title>
+        <pubTime>2017-11-09T07:55:35.000Z</pubTime>
+        
+        <tag>Flexbox</tag>
+         
+        <tag>弹性布局</tag>
+         
+         
+           
+             
+              <breadCrumb title="CSS3" url="https://allenmind.cn/categories/CSS3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/11/05/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
+    <lastmod>2017-11-05T11:46:41.784Z</lastmod>
+    <data>
+        <display>
+        <title>原型与原型链</title>
+        <pubTime>2017-11-05T10:07:41.000Z</pubTime>
+        
+        <tag>原型</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/10/22/%E7%BD%91%E9%A1%B5%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2017-11-05T10:18:33.156Z</lastmod>
+    <data>
+        <display>
+        <title>网页视差滚动效果</title>
+        <pubTime>2017-10-22T05:47:44.000Z</pubTime>
+        
+        <tag>视差滚动</tag>
+         
+         
+           
+             
+              <breadCrumb title="网页效果技巧" url="https://allenmind.cn/categories/%E7%BD%91%E9%A1%B5%E6%95%88%E6%9E%9C%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/10/22/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0/</loc>
+    <lastmod>2017-11-05T08:20:46.024Z</lastmod>
+    <data>
+        <display>
+        <title>刻意练习笔记</title>
+        <pubTime>2017-10-22T07:48:27.000Z</pubTime>
+        
+        <tag>刻意练习</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习" url="https://allenmind.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/10/22/%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/</loc>
+    <lastmod>2017-10-22T05:44:15.272Z</lastmod>
+    <data>
+        <display>
+        <title>鼠标拖拽效果</title>
+        <pubTime>2017-10-22T05:36:49.000Z</pubTime>
+        
+        <tag>鼠标拖拽</tag>
+         
+         
+           
+             
+              <breadCrumb title="网页效果技巧" url="https://allenmind.cn/categories/%E7%BD%91%E9%A1%B5%E6%95%88%E6%9E%9C%E6%8A%80%E5%B7%A7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/10/14/%E3%80%8A%E5%9B%BE%E8%A7%A3HTTP%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-10-22T05:33:42.658Z</lastmod>
+    <data>
+        <display>
+        <title>《图解HTTP》读书笔记</title>
+        <pubTime>2017-10-14T04:45:00.000Z</pubTime>
+        
+        <tag>HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习" url="https://allenmind.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/09/17/%E6%94%B9%E5%8F%98banner-img/</loc>
+    <lastmod>2017-09-17T08:06:44.534Z</lastmod>
+    <data>
+        <display>
+        <title>改变某篇文章的banner-img</title>
+        <pubTime>2017-09-17T08:00:00.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/09/17/hexo%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-09-17T07:43:49.408Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo使用笔记</title>
+        <pubTime>2017-09-17T05:05:00.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>博客搭建</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习" url="https://allenmind.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/09/17/%E5%9B%BE%E7%89%87%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-09-17T07:39:50.193Z</lastmod>
+    <data>
+        <display>
+        <title>图片测试</title>
+        <pubTime>2017-09-17T07:25:00.000Z</pubTime>
+        
+        <tag>test</tag>
+         
+         
+           
+             
+              <breadCrumb title="test" url="https://allenmind.cn/categories/test/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/2017/08/26/hello-world/</loc>
+    <lastmod>2017-08-25T16:13:18.011Z</lastmod>
+    <data>
+        <display>
+        <title>Hello World</title>
+        <pubTime>2017-08-25T16:13:18.011Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+</urlset>
