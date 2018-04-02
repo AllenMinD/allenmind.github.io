@@ -109,7 +109,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-11-11</span>
-            <span class="time">22:53:33</span>
+            <span class="time">00:38:53</span>
           </span>
           
           <!--  Categories  -->
@@ -189,7 +189,7 @@
     }
   }
 
-  var resulet = compare(5, 10);
+  var result = compare(5, 10);
 </pre>
 
 <p>上面这个代码，全局执行环境的变量对象包含compare和result。当<strong>调用</strong>compare()时，会为其产生一个局部环境，还会创建一个包含arguments对象、value1、value2（其实还有this）的活动对象。在compare()局部执行环境的作用域链中，compare的活动对象处于第一位，全局环境的变量对象处于第二位。具体看下图：  </p>
@@ -231,20 +231,20 @@
   }
 
   //创建函数
-  var comparenNames = createComparisonFunction("name");
+  var compareNames = createComparisonFunction("name");
   //调用函数
-  var resule = compareNames({ name:"Nicholas" }, { name:"Greg" });
+  var result = compareNames({ name:"Nicholas" }, { name:"Greg" });
   //解除对匿名函数的引用
   compareNmaes = null;
 </pre>
 
 <p>上面的代码中：  </p>
 <ul>
-<li>全局执行环境中的变量对象有：comparenNames和resule</li>
+<li>全局执行环境中的变量对象有：compareNames和result</li>
 <li>createComparisonFunction()函数的执行环境中的活动对象有：arguments对象和propertyName</li>
 <li>匿名函数的执行环境中的活动对象有：arguments对象、object1、object2、value1、value2</li>
 </ul>
-<p>在调用comparenNames()的过程中产生的作用域链如下图所示：</p>
+<p>在调用compareNames()的过程中产生的作用域链如下图所示：</p>
 <p><img src="/js作用域总结/pic2.png" alt="图片2"></p>
 <p>前面我们说过：</p>
 <blockquote>

@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://allenmind.cn/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-04-02T16:37:51.760Z</lastmod>
+    <data>
+        <display>
+        <title>js作用域总结</title>
+        <pubTime>2017-11-11T07:01:55.000Z</pubTime>
+        
+        <tag>作用域链</tag>
+         
+        <tag>执行环境</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/%E5%90%AF%E7%A4%BA%E5%BD%95/</loc>
     <lastmod>2018-03-29T11:39:38.378Z</lastmod>
     <data>
@@ -201,28 +223,6 @@
            
              
               <breadCrumb title="CSS3" url="https://allenmind.cn/categories/CSS3/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://allenmind.cn/js%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2017-11-12T13:41:02.052Z</lastmod>
-    <data>
-        <display>
-        <title>js作用域总结</title>
-        <pubTime>2017-11-11T07:01:55.000Z</pubTime>
-        
-        <tag>作用域链</tag>
-         
-        <tag>执行环境</tag>
-         
-         
-           
-             
-              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
           
         </display>
     </data>
