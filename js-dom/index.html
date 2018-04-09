@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Javascript DOM 总结"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Javascript DOM 总结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-04-09</span>
+            <span class="time">22:29:00</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Javascript/">Javascript</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/DOM/">#DOM</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>一些常见的DOM操作<br><a id="more"></a></p>
+<h1>Javascript DOM 总结</h1>
+
+<p>浏览器使用与该形状对应的数据结构来表示文档。每个盒子都是一个对象，我们可以和这些对象交互，找出其中包含的盒子与文本。我们将这种表示方式成为文档对象模型，或简称DOM。</p>
+<ol>
+<li><p>DOM的根节点是 <code>document.documentElement</code></p>
+</li>
+<li><p>获取节点：  </p>
+<p> <code>document.getElementById</code> （通过元素的 id 值来获取节点）<br> <code>document.getElementsByClassName</code> （通过元素的 class 值来获取节点，返回的是一个类似于数组的对象，数组里面的每个元素的class值相同）<br> <code>document.getElementsByTagName</code> （通过元素的 标签 来获取节点，返回的是一个类似于数组的对象，数组里面的每个元素的标签相同 ）  </p>
+</li>
+<li><p>创建节点：  </p>
+<p> <code>document.createElement(&quot;p&quot;)</code> （创建元素节点，例子中是创建一个段落）<br> <code>document.createTextNode(&quot;...&quot;)</code> （创建文本节点）  </p>
+</li>
+<li><p>（基本）节点属性:  </p>
+<p> <code>NODE.nodeType</code>（返回节点的类型）：1 代表元素节点； 2 代表属性节点； 3 代表文本节点；8 代表注释  (PS:NODE指的是任意节点）<br> <code>NODE.nodeName</code> (返回节点名称）<br> <code>NODE.nodeValue</code> （返回节点的值）  </p>
+</li>
+<li><p>（层次）节点属性：  </p>
+<p> <code>NODE.parentNode</code> （获取当前节点的父节点）<br> <code>NODE.childNodes</code> （获取当前节点的子节点）<br> <code>NODE.firstChild</code> （获取当前节点的第一个子节点）<br> <code>NODE.lastChild</code>  （获取当前节点的最后一个子节点）<br> <code>NODE.previousSibing</code> （获取当前节点的前一个兄弟节点，如果无则为null）<br> <code>NODE.nextSibing</code> （获取当前节点的后一个兄弟节点，如果无则为null ）  </p>
+</li>
+<li><p>修改节点的操作（PS：下面的NODE代表父节点）:  </p>
+<p> <code>NODE.removeChild</code>  （移除特定节点）<br> <code>NODE.appendChild</code>  （添加子节点，并将其放置在孩子节点列表末尾）<br> <code>NODE.insertBefore</code>   （将第一个参数表示的节点插入到第二个参数表示的节点前面。例子：<code>NODE.insertBefore(A, B);</code> //把节点A插到节点B的前面）<br> <code>NODE.replaceChild</code>   （将一个子节点替换为另一个子节点。例子：<code>NODE.replaceChild(A, B);</code>  //用节点A 来代替节点B）<br> （insertBefore和replaceChild都把新节点作为第一个参数）  </p>
+</li>
+<li><p>获取（设置）元素的属性:</p>
+<p> （这里说明一下：【元素的属性】和【元素节点属性】是不同的，前者的“元素”指的是HTML中的元素，后者是指DOM中的元素节点。）<br> 我们可以通过元素的DOM对象的同名属性去访问元素的某些属性，比如链接的href属性。<br> （PS：下面的NODE指的是元素节点）<br> <code>NODE.getAttribute(&quot;align&quot;)</code> （获取align属性的内容）<br> <code>NODE.setAttribute(&quot;align&quot;, &quot;center&quot;)</code> （设置【或创建】align属性为center）（可以用该语句来创建自定义属性）<br> <code>NODE.removeAttribute(&quot;align&quot;)</code>  （删除align属性）  </p>
+</li>
+<li><p>布局:</p>
+<p> 块元素     （Block，会换行）<br> 内联元素  （Inline）<br> 元素的尺寸与位置 属性：<br> <code>var NODE = document.getElementsByTagName(&quot;p&quot;)[0];</code><br> <code>NODE.offSetWidth</code>        （元素的起始位置  宽  单位：像素）<br> <code>NODE. offSetHeight</code>      （元素的起始位置  高  单位：像素）<br> <code>NODE. clientWidth</code>        （元素内部占据的空间尺寸   宽   忽略边界宽度）<br> <code>NODE. clientHeight</code>       （元素内部占据的空间尺寸   高   忽略边界宽度）<br> <code>window. pageXOffset</code>      （当前页面相对于窗口显示区左上角的X位置）<br> <code>window. pageYOffset</code>      （当前页面相对于窗口显示区左上角的Y位置）<br> PS: <a href="https://allenmind.cn/%E9%BC%A0%E6%A0%87%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/">更详细请看这里</a>  </p>
+</li>
+<li><p>查询选择器:</p>
+<p> <code>document.querySeletorAll(&quot;...&quot;);</code>   // 该方法接受一个选择器字符串并返回类似与数组对象，返回的对象中包含所有匹配的元素<br> <code>document.querySeletor(&quot;...&quot;);</code>      // 该方法至返回第一个匹配元素，如果不在则返回null  </p>
+</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

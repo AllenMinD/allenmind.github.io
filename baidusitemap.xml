@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://allenmind.cn/js-dom/</loc>
+    <lastmod>2018-04-09T14:28:49.659Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript DOM 总结</title>
+        <pubTime>2018-04-09T14:27:30.000Z</pubTime>
+        
+        <tag>DOM</tag>
+         
+         
+           
+             
+              <breadCrumb title="Javascript" url="https://allenmind.cn/categories/Javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/garbage-collection/</loc>
     <lastmod>2018-04-07T14:15:45.613Z</lastmod>
     <data>
