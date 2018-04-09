@@ -109,7 +109,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-04-09</span>
-            <span class="time">22:29:00</span>
+            <span class="time">22:52:59</span>
           </span>
           
           <!--  Categories  -->
@@ -167,6 +167,13 @@
 </li>
 <li><p>查询选择器:</p>
 <p> <code>document.querySeletorAll(&quot;...&quot;);</code>   // 该方法接受一个选择器字符串并返回类似与数组对象，返回的对象中包含所有匹配的元素<br> <code>document.querySeletor(&quot;...&quot;);</code>      // 该方法至返回第一个匹配元素，如果不在则返回null  </p>
+</li>
+<li><p>获取（控制）元素的类</p>
+<p><code>element.classList.length</code> （返回类列表中类的数量）<br><code>element.add(class1, class2, ...)</code> （在元素中添加一个或多个类名。如果指定的类名已存在，则不会添加。）<br><code>element.contains(class)</code> （返回布尔值，判断指定的类名是否存在。）<br><code>element.item(index)</code> （返回类名在元素中的索引值。索引值从 0 开始。如果索引值在区间范围外则返回 null。）<br><code>element.remove(class1, class2, ...)</code> （移除元素中一个或多个类名。若移除不存在的类名，不会报错。）<br><code>element.toggle(class, true|false)</code> （在元素中切换类名。第一个参数为要在元素中移除的类名，并返回 false。 如果该类名不存在则会在元素中添加类名，并返回 true。第二个是可选参数，是个布尔值用于设置元素是否强制添加或移除类，不管该类名是否存在。）  </p>
+<p>toggle的例子：<br>移除一个 class: <code>element.classList.toggle(&quot;classToRemove&quot;, false);</code><br>添加一个 class: <code>element.classList.toggle(&quot;classToAdd&quot;, true);</code></p>
+</li>
+<li><p>获取（控制）元素的样式</p>
+<p><code>element.style.样式属性名</code> （获取元素的样式）<br><code>element.style.样式属性名 = &#39;属性值&#39;</code> （设置元素的样式）<br>（由于 style 属性的优先级和通过style设置内联样式是一样的，并且在css层级样式中拥有最高优先级，因此在为特定的元素设置样式时很有用。）  </p>
 </li>
 </ol>
 
