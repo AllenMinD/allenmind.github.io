@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://allenmind.cn/prototype-or-not/</loc>
+    <lastmod>2018-05-11T17:14:50.598Z</lastmod>
+    <data>
+        <display>
+        <title>关于为对象添加方法时加与不加prototype的区别</title>
+        <pubTime>2018-05-11T17:08:21.000Z</pubTime>
+        
+        <tag>对象</tag>
+         
+         
+           
+             
+              <breadCrumb title="Javascript" url="https://allenmind.cn/categories/Javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/js-dom/</loc>
     <lastmod>2018-04-09T16:07:35.584Z</lastmod>
     <data>
@@ -51,9 +71,9 @@
         <title>Javascript数据类型总结和对象的分类</title>
         <pubTime>2018-04-07T08:14:50.000Z</pubTime>
         
-        <tag>数据类型</tag>
-         
         <tag>对象</tag>
+         
+        <tag>数据类型</tag>
          
          
            

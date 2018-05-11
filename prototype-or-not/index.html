@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Allenmind">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="cURL基本使用教程"/>
+  <meta property="og:title" content="关于为对象添加方法时加与不加prototype的区别"/>
   <meta property="og:description" content="这是Allenmind的个人博客" />
   <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">cURL基本使用教程</p>
+          <p class="title">关于为对象添加方法时加与不加prototype的区别</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -108,14 +108,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2018-02-10</span>
+            <span class="date">2018-05-12</span>
             <span class="time">01:14:58</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/网络工程/">网络工程</a>
+<a href="/categories/Javascript/">Javascript</a>
 </span>
           
           <!-- 阅读统计 -->
@@ -130,26 +130,89 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/cURL/">#cURL</a>
+<a class="tag" href="/tags/对象/">#对象</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <p>本篇文章介绍cURL的基本使用方法<br><a id="more"></a></p>
-<h1>cURL基本使用教程</h1>
+          <p>在今天在研读《Node.js实践》第九章时，发现了一个以前重来没有考虑到的现象：为对象添加方法的时候，尽然没有加prototype。经过了一番思考和实验，写下了此文作为总结。<br><a id="more"></a></p>
+<h1>关于为对象添加方法时加与不加prototype的区别</h1>
 
-<p>cURL是一个强大的命令行HTTP客户端，可以用来向目标服务器发送请求。</p>
-<p>git Bash里面就集成了cURL，在git Bash中运行下面命令即可发起相应请求：</p>
-<ul>
-<li>POST请求： <code>curl -X POST -d &#39;...&#39; http://localhost:3000 （或者 curl -d &#39;...&#39; http://localhost:3000）</code></li>
-<li>GET请求： <code>curl -X GET http://localhost:3000 （或者curl http://localhost:3000）</code></li>
-<li>DELETE请求： <code>curl -X DELETE http://localhost:3000/索引号</code></li>
-<li>PUT请求： <code>curl -X PUT -d &quot;...&quot; http://localhost:3000/索引号</code></li>
-</ul>
-<p>常用curl命令的参数：</p>
-<p>-h 查看请求参数的含义<br>-v 显示请求的信息<br>-X 选项指定其它协议<br>-d 用来输入参数  </p>
+<p><strong>目录</strong></p>
+<ol>
+<li><a href="#chapter1">问题的描述与探究</a></li>
+<li><a href="#chapter2">引发其他思考</a></li>
+</ol>
+<h2 id="chapter1">一、问题的描述与探究</h2>
+
+<p>在今天在研读《Node.js实践》第九章时，发现了一个以前从来没有考虑到的现象：为对象添加方法的时候，尽然没有加prototype。大概就像下面的例子：</p>
+<pre>
+// 构造函数User
+function User() {
+  // ...
+}
+
+User.getId = function(name, fn) {
+  // ...
+}
+</pre>
+
+<p>一开始，我看着这代码就总感觉怪怪的，其中的 <code>User.getId = ...</code> 不是应该写成 <code>User.prototype.getId = ...</code> 吗？？？它们有什么区别？</p>
+<p>像 <code>User.getId = ...</code> 这样写又会出现怎样的效果？</p>
+<p>这个getId方法会加入到原型链中吗？（通过对象的实例能调用这个方法吗？）</p>
+<p>究竟如何调用这个getId()方法呢？</p>
+<p>里面的this指针会不会和 <code>User.prototype.getId = ...</code> 中的this指针不同？</p>
+<p>带着这些问题，我做了一些小实验。</p>
+<p>首先，在做实验之前，我们知道一些知识：</p>
+<blockquote>
+<ol>
+<li>在Javascript中，函数属于Function类型，而Function类型是属于Object类型的，也就是说，<strong>函数也是对象</strong>。而一个对象中，可以包含一些属性和方法。</li>
+<li>所有函数的默认原型都是Object的实例。</li>
+<li>this指向调用这个方法（函数）的那个对象。</li>
+</ol>
+</blockquote>
+<p>下面是实验代码：</p>
+<pre>
+function AA() {
+}
+
+AA.prototype.func1 = function() {
+    console.log(typeof this);  // "Object"
+    console.log(this);  // 返回AA对象
+    console.log("我是加了prototype的");
+}
+
+// 我们知道，一个对象中，包含了属性和方法
+// AA是一个function类型，而function类型其实也属于Object类型，所以func2是函数AA（或者说对象AA）的一个方法
+AA.func2 = function() {
+    console.log(typeof this);  // "function"
+    console.log(this); // 返回AA这个构造函数
+    console.log("我没有加prototype");
+}
+
+var ins = new AA();
+
+ins.func1();  // 显示"我是加了prototype的"
+
+AA.func2();  // 显示"我没有加prototype"
+
+func2();  // 报错，因为func2()这个方法是对象AA的方法，不是AA对象的实例ins的方法
+
+ins.func2();  // 报错，因为func2()这个方法是对象AA的方法，不是AA对象的实例ins的方法
+
+</pre>
+
+<p>用一张图来说明一下关系：</p>
+<p><img src="/prototype-or-not/pic1.png" alt="图片1"></p>
+<h2 id="chapter2">二、引发其他思考</h2>
+
+<p>做完实验后，根据实验的结果，引发了一些思考：</p>
+<ol>
+<li>new关键字的原理（参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="external">MDN</a>）</li>
+<li>对于“函数”、“构造函数”、“对象”、“原型”、“实例”的概念和关系的重新思考</li>
+</ol>
 
         </div>
       </div>
