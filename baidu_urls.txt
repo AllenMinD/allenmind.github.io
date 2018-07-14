@@ -1,3 +1,4 @@
+https://allenmind.cn/socketio-namespace/
 https://allenmind.cn/prototype-or-not/
 https://allenmind.cn/js-dom/
 https://allenmind.cn/garbage-collection/
