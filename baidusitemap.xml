@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://allenmind.cn/garbage-collection/</loc>
+    <lastmod>2018-09-21T02:44:30.463Z</lastmod>
+    <data>
+        <display>
+        <title>Javascript中的垃圾回收机制</title>
+        <pubTime>2018-04-07T14:09:58.000Z</pubTime>
+        
+        <tag>垃圾回收机制</tag>
+         
+         
+           
+             
+              <breadCrumb title="Javascript" url="https://allenmind.cn/categories/Javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/socketio-namespace/</loc>
     <lastmod>2018-07-14T10:26:42.642Z</lastmod>
     <data>
@@ -52,26 +72,6 @@
         <pubTime>2018-04-09T14:27:30.000Z</pubTime>
         
         <tag>DOM</tag>
-         
-         
-           
-             
-              <breadCrumb title="Javascript" url="https://allenmind.cn/categories/Javascript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://allenmind.cn/garbage-collection/</loc>
-    <lastmod>2018-04-07T14:15:45.614Z</lastmod>
-    <data>
-        <display>
-        <title>Javascript中的垃圾回收机制</title>
-        <pubTime>2018-04-07T14:09:58.000Z</pubTime>
-        
-        <tag>垃圾回收机制</tag>
          
          
            

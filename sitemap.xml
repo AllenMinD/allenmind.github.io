@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://allenmind.cn/garbage-collection/</loc>
+    
+    <lastmod>2018-09-21T02:44:30.463Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://allenmind.cn/socketio-namespace/</loc>
     
     <lastmod>2018-07-14T10:26:42.642Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://allenmind.cn/js-dom/</loc>
     
     <lastmod>2018-04-09T16:07:35.584Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://allenmind.cn/garbage-collection/</loc>
-    
-    <lastmod>2018-04-07T14:15:45.614Z</lastmod>
     
   </url>
   
