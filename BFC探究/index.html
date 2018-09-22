@@ -109,7 +109,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-03-23</span>
-            <span class="time">10:45:03</span>
+            <span class="time">21:31:20</span>
           </span>
           
           <!--  Categories  -->
@@ -172,6 +172,7 @@
 <li>【关于浮动元素的渲染】规则：浮动和清除浮动只会应用于<code>同一个</code>BFC内的元素。浮动不会影响其他BFC中的元素，而清除浮动只能清除同一BFC中在它前面的元素的浮动。另外，BFC可以包裹住浮动元素</li>
 <li>【垂直外边距折叠】规则：“垂直外边距折叠”这个现象只会在<code>同一个</code>BFC中的两个<code>相邻</code>的<code>块级元素</code>之间发生。</li>
 <li>【隔离】规则：BFC相当于一个隔离的<code>独立容器</code>，容器里面（或者说BFC里面）的元素不会影响到外面的元素</li>
+<li>【包含】规则：一个BFC包含了创建它的元素内部的所有内容。如果一个父元素创建了一个BFC，这个父元素的子元素也创建了一个BFC，那么这个子元素其实也处于父元素所创建的BFC中，也就是说，父元素和子元素都处在同一个BFC中。（这就可以解释为什么在父元素创建BFC，可以解决父元素高度坍塌的问题了）。</li>
 </ol>
 <h2 id="chapter4">4. BFC的应用场景</h2>
 
@@ -187,7 +188,7 @@
 <li>使用BFC来包含浮动，防止出现父元素“坍塌”现象</li>
 </ul>
 <p>对于用一个父元素，如果里面的子元素变成了浮动元素，那么父元素的高度就会发生“坍塌”，这是因为它的子元素是浮动元素（float属性为非none），这就使得子元素产生了一个新的BFC，而由上面的【规则5】可知，一个BFC相当于一个独立的容器，容器里面的元素不会影响到外面的元素，所以子元素并不会影响到父元素的高度，这就是父元素的高度为什么不被浮动的子元素“撑起来”的原因。</p>
-<p>而我们的解决方法也是用回BFC来解决：我们只需要给父元素也创建一个BFC，让浮动的子元素也处于一个BFC里面，这就解决了坍塌的问题了。</p>
+<p>而我们的解决方法也是用回BFC来解决：我们只需要给父元素也创建一个BFC，因为由上面的【规则6】可知，一个BFC包含则创建它的元素及其子元素，这样的话，此时的父元素和子元素就算是处在同一个BFC（由父元素所创建的BFC）中了，这就解决了坍塌的问题了。</p>
 <p></p><p data-height="265" data-theme-id="0" data-slug-hash="BrWgOX" data-default-tab="js,result" data-user="AllenMinD" data-embed-version="2" data-pen-title="BFC实验室1" class="codepen">See the Pen <a href="https://codepen.io/AllenMinD/pen/BrWgOX/" target="_blank" rel="external">BFC实验室1</a> by aLLeNxD (<a href="https://codepen.io/AllenMinD" target="_blank" rel="external">@AllenMinD</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
