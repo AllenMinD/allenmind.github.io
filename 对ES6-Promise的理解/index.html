@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="对ES6 Promise的理解"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">对ES6 Promise的理解</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-11-07</span>
+            <span class="time">00:42:31</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/JS基础/">JS基础</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/ES6/">#ES6</a> <a class="tag" href="/tags/Promise/">#Promise</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本文总结了我对ES6 Promise的理解。<br><a id="more"></a></p>
+<h1>对ES6 Promise的理解</h1>
+
+<h3 id="一、正题"><a href="#一、正题" class="headerlink" title="一、正题"></a>一、正题</h3><p>这篇文章用来谈谈我对Promise的理解。</p>
+<p>首先Promise是一个构造函数，使用new Promise可以创建一个Promise对象。</p>
+<p>Promise对象是一个“容器”，里面装着【异步操作】。</p>
+<p>Promise对象有3个状态：pending（等待异步操作完成）、fulfilled（异步操作成功完成）、rejected（异步操作失败）。</p>
+<p>当使用 new Promise() 创建一个新的Promise对象时，里面需要带一个参数，这个参数是一个函数，而这个函数的又有2个参数：resolve和reject。这里用文字表达有点难懂，直接看程序：</p>
+<pre>
+var pro = new Promise(function (resolve, reject) {
+  // 一些异步操作
+  if (异步操作成功完成) {
+    resolve(value1);  // value1是异步操作成功后返回的值（如果异步操作完成后有值返回的话）
+  } else {  // 异步操作失败
+    reject(value2);  // value2是异步操作失败后返回的值 （如果异步操作失败后有值返回的话）
+  }
+});
+</pre>
+
+<p>resolve是一个函数，当调用这个函数时，Promise对象的状态从pending变成了fulfill，也就是说异步操作成功。</p>
+<p>reject也是一个函数，当调用这个函数时，Promise对象的状态从pending变成了reject，也就是说异步操作失败。</p>
+<p>Promise对象通过在调用resolve和reject函数时给它们传递参数，从而把异步操作返回来的信息传递出去。</p>
+<p>Promise对象有三个方法：.then()、.catch()、.finally()。都是为Promise对象中的异步操作添加【回调函数】。</p>
+<p>.then方法的参数是两个函数，这个两个函数作为Promise对象中异步操作的【回调函数】。第一个参数是必填的，是当Promise对象中的异步操作成功完成后，才调用的回调函数（onfulfilled）；第二个参数是可选的，是当异步操作失败后，才调用的回调函数（onRejected），而这个回调函数其实一般都写在.catch()中。</p>
+<p>.catch()方法的参数是一个函数，作为异步操作失败后，才调用的回调函数（onRejected）。</p>
+<p>.finally()方法的参数也是一个函数，无论异步操作成功或者失败，都会调用这个函数。</p>
+<p>.then()、.catch()中的回调函数的参数，就是Promise对象中resolve/reject的参数。</p>
+<p><img src="/对ES6-Promise的理解/pic1.png" alt="图片1"></p>
+<pre>
+var x = 1;
+var pro = new Promise(function(resolve, reject) {
+    var that = this;  // 匿名函数的this指向全局window
+    console.log(1);  // 同步任务
+    setTimeout(function(){  // 异步任务
+      if (that.x === 1) {
+                resolve(2);
+            } else {
+                reject(3);
+            }
+    }, 100);
+        console.log(4);  // 同步任务
+});
+
+pro
+    .then(function(value1) {
+        console.log(value1);
+    }).catch(function(value2) {
+        console.log(value2);
+    });
+
+console.log(5);
+
+// 输出：1 4 5 2
+</pre>
+
+<p>当使用new Promise（函数X）创建一个Promise对象时，会立刻执行函数X中的同步任务。</p>
+<h3 id="二、应用：把Ajax封装到Promise中："><a href="#二、应用：把Ajax封装到Promise中：" class="headerlink" title="二、应用：把Ajax封装到Promise中："></a>二、应用：把Ajax封装到Promise中：</h3><p>Ajax请求数据是一个异步操作，因此可以将其放到（封装到）Promise对象中：</p>
+<p>参考：<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰的ES6教程</a></p>
+<pre>
+const getJSON = function(url) {
+    const promise = new Promise(function(resolve, reject) {
+        const handler = function() {
+            if (this.readyState !== 4) {
+                return;
+            } 
+            if (this.readyState === 200) {
+                resolve(this.response);
+            } else {
+                reject(new Error(this.statusText));
+            }
+        };
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.onreadystatechange = handler;  // 异步操作
+        xhr.responseType = "json";
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.send();
+    });
+
+    return promise;
+};
+
+getJSON("/posts.json")
+    .then(function(json) {
+        console.log("Ajax请求返回的数据：", json);
+    })
+    .catch(function(error) {
+        console.log("出错了", error);
+    });
+</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+        <p class="copyright text-muted">
+          <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备17129030号</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

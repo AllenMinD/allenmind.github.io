@@ -1,3 +1,7 @@
+https://allenmind.cn/JavaScript：从IIFEs，到CommonJS，再到ES6的Modules/
+https://allenmind.cn/JavaScript运行机制、事件循环/
+https://allenmind.cn/对ES6-Promise的理解/
+https://allenmind.cn/ES6-操作符/
 https://allenmind.cn/socketio-namespace/
 https://allenmind.cn/prototype-or-not/
 https://allenmind.cn/js-dom/

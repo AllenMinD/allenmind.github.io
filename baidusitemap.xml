@@ -4,6 +4,92 @@
 
     
   <url>
+    <loc>https://allenmind.cn/%E5%AF%B9ES6-Promise%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2019-03-02T16:40:59.265Z</lastmod>
+    <data>
+        <display>
+        <title>对ES6 Promise的理解</title>
+        <pubTime>2018-11-06T16:29:39.000Z</pubTime>
+        
+        <tag>ES6</tag>
+         
+        <tag>Promise</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS基础" url="https://allenmind.cn/categories/JS%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/JavaScript%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E3%80%81%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</loc>
+    <lastmod>2019-03-02T16:34:04.581Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript运行机制、事件循环</title>
+        <pubTime>2018-11-18T07:44:56.000Z</pubTime>
+        
+        <tag>事件循环</tag>
+         
+        <tag>Event Loop</tag>
+         
+        <tag>运行机制</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS基础" url="https://allenmind.cn/categories/JS%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/JavaScript%EF%BC%9A%E4%BB%8EIIFEs%EF%BC%8C%E5%88%B0CommonJS%EF%BC%8C%E5%86%8D%E5%88%B0ES6%E7%9A%84Modules/</loc>
+    <lastmod>2019-03-02T14:43:52.201Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript：从IIFEs，到CommonJS，再到ES6的Modules</title>
+        <pubTime>2019-01-17T14:07:50.000Z</pubTime>
+        
+        <tag>模块化</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js基础" url="https://allenmind.cn/categories/Js%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://allenmind.cn/ES6-%E6%93%8D%E4%BD%9C%E7%AC%A6/</loc>
+    <lastmod>2019-03-02T14:43:15.756Z</lastmod>
+    <data>
+        <display>
+        <title>ES6 ...操作符</title>
+        <pubTime>2018-10-02T14:21:06.000Z</pubTime>
+        
+        <tag>ES6</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS基础" url="https://allenmind.cn/categories/JS%E5%9F%BA%E7%A1%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/BFC%E6%8E%A2%E7%A9%B6/</loc>
     <lastmod>2018-09-22T13:30:26.136Z</lastmod>
     <data>
