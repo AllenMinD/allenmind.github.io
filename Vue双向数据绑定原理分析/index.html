@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Vue双向数据绑定原理分析"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Vue双向数据绑定原理分析</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-12-13</span>
+            <span class="time">19:23:12</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Vue-js/">Vue.js</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/双向数据绑定/">#双向数据绑定</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本文主要对Vue.js中双向数据绑定的原理进行分析，以及模拟实现双向数据绑定。<br><a id="more"></a></p>
+<h1>Vue双向数据绑定原理分析</h1>
+
+<p>本文参考公众号：小时光茶社中的<a href="https://mp.weixin.qq.com/s/V38tRAExUOUYkcPguIRq-w" target="_blank" rel="external">《剖析Vue原理&amp;实现双向绑定MVVM》</a>。</p>
+<p>结合掘金小册的<a href="https://juejin.im/book/5a36661851882538e2259c0f" target="_blank" rel="external">《剖析 Vue.js 内部运行机制》</a>的2、3章响应式系统来理解更佳。</p>
+<h2 id="实现数据双向绑定的方法"><a href="#实现数据双向绑定的方法" class="headerlink" title="实现数据双向绑定的方法"></a>实现数据双向绑定的方法</h2><ul>
+<li>Angular：脏值检查</li>
+<li>Vue.js：数据劫持和发布者-订阅者模式结合（通过<code>Object.defineProperty()</code>来劫持各个属性的<code>setter</code>和<code>getter</code>，在数据变动时发布消息给订阅者，触发响应的监听回调）<br>（关于<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="external">Object.defineProperty()的用法</a>（特别要理解“属性描述符”的概念））</li>
+</ul>
+<h2 id="什么是【数据双向绑定】？"><a href="#什么是【数据双向绑定】？" class="headerlink" title="什么是【数据双向绑定】？"></a>什么是【数据双向绑定】？</h2><p>在回答这个问题之前，首先要搞清楚Vue.js的【响应式系统】。</p>
+<p>Vue.js的【响应式系统】就是：当一个对象的属性发生变化时，依赖到这个属性的其他对象能够知道这个属性发生了变化，并且能对视图进行相应的更新。而这其实也可以叫做【数据单向绑定】。（<a href="https://cn.vuejs.org/v2/guide/reactivity.html" target="_blank" rel="external">官方文档</a>）</p>
+<p>而【数据双向绑定】实际上就是在【单向绑定】基础上，给可输入元素（input、textarea等），添加了<code>change（input）事件</code>，来修改对象的属性值，从而改变视图。</p>
+<p><a href="http://www.html-js.com/article/Study-of-twoway-data-binding-JavaScript-talk-about-JavaScript-every-day" target="_blank" rel="external">更直白的说法</a>：【数据双向绑定】是指将对象属性的变化绑定到UI，或者反之。换句话说，如果我们有一个name属性的user对象，当我们给user.name赋予一个新值时，UI也会相应显示新的名字。同样的，如果UI包括了一个输入字段用来输入用户名，输入一个新的值会导致user对象中的name属性的值发生变化。</p>
+<ul>
+<li><code>单向绑定</code>：通过赋值语句修改对象的属性值 -&gt;通知依赖这个属性值的其他对象 -&gt; 其他对象对视图进行相应更新</li>
+<li><code>双向绑定</code>：通过表单输入值修改对象的属性值 -&gt;通知依赖这个属性值的其他对象 -&gt; 其他对象对视图进行相应更新</li>
+</ul>
+<h2 id="模拟实现Vue-js【数据双向绑定】："><a href="#模拟实现Vue-js【数据双向绑定】：" class="headerlink" title="模拟实现Vue.js【数据双向绑定】："></a>模拟实现Vue.js【数据双向绑定】：</h2><p>通过【数据劫持】和【发布者-订阅者模式】实现。</p>
+<h3 id="发布者-订阅者模式："><a href="#发布者-订阅者模式：" class="headerlink" title="发布者-订阅者模式："></a>发布者-订阅者模式：</h3><p>将对象的属性看作是“发布者”，将依赖这个属性的其他对象看作是“订阅者”。一个对象的属性发生了变化时，发布者就发布消息给订阅者，通知订阅者【“我的值发生了变化”】，然后订阅者知道这个消息后，再对视图进行更新。</p>
+<h3 id="数据劫持："><a href="#数据劫持：" class="headerlink" title="数据劫持："></a>数据劫持：</h3><p>通过Object.defineProperty，来修改对象的属性的get和set，具体点来说就是，在做真正的get（获取数据）和set（设置数据）操作之前，再额外添加一些操作。<br>在进行get操作中，进行【依赖收集】，意思就是，给将当前获取这个属性值的对象看作的订阅者，并把这个订阅者加入到【订阅器（发布者）Dep】的一个“订阅者数组”中。<br>在进行set操作中，就要把“属性值发生改变”的这一消息通知所有订阅者们，让他们相应地更新视图。</p>
+<h3 id="具体代码模块："><a href="#具体代码模块：" class="headerlink" title="具体代码模块："></a>具体代码模块：</h3><pre><code>1. 入口：Vue对象
+2. 给每个属性添加【响应式系统】：observe
+3. 定义【响应式系统】：defineReactive
+4. 发布者（依赖收集器）：Dep对象（subs、addSub、notify）
+5. 订阅者：Watcher对象（Dep.target = this、update）
+6. 解析元素中的v-model指令和双大括号{{}}：Complie
+</code></pre><h3 id="Show-me-the-code："><a href="#Show-me-the-code：" class="headerlink" title="Show me the code："></a>Show me the code：</h3><pre>
+// observe函数用来监听对象的属性是否有变化。
+function observe(data) {
+    if (!data || typeof data !== 'object') {
+        return;
+    }
+    // 取出所有属性遍历，给每个属性加上【响应式系统】
+    Object.keys(data).forEach(function(key) {
+        defineReactive(data, key, data[key]);
+    });
+}
+
+// 定义【响应式系统】
+function defineReactive(data, key, val) {
+    var dep = new Dep();  //将数据变成发布者
+    observe(val); // 监听子属性
+    Object.defineProperty(data, key, {
+        enumerable: true,  // 定义该属性可以枚举
+        configurable: true, // 定义该属性可以修改
+        get: function() {
+            // 添加订阅者
+            // 需要知道是谁订阅了我, 所以在订阅的时候就提前保存下订阅者(Dep.target)
+            console.log("有一个新的订阅者！");
+
+            Dep.target && dep.addSub(Dep.target);
+            return val;
+        },
+        set: function(newVal) {
+            // 通知所有的订阅者我更新了
+            if (val === newVal) return;
+            console.log("“哈哈哈，监听到对象的属性变化了：", val, " -> ", newVal);
+            dep.notify();
+            val = newVal;
+        }
+    });
+}
+
+// 依赖收集器（发布者）：每一个数据（对象的属性），都可以是发布者
+function Dep() {
+    this.subs = [];  // 订阅者数组
+}
+Dep.prototype = {
+    addSub: function(sub) {
+        this.subs.push(sub);
+    },
+    notify: function() {
+        console.log("这里要通知订阅者们调用自身的update()来更新视图。");
+        this.subs.forEach(sub => {
+            sub.update();
+        })
+    }
+}
+
+// 订阅者：每一个依赖（引用）属性的，都是订阅者
+function Watcher() {
+    Dep.target = this;  // 每次订阅都告诉发布者“我是谁”
+}
+Watcher.prototype.update = function() {
+    console.log("我是订阅者，现在发现依赖值发生了改变，该更新视图啦~");
+}
+
+// 入口
+function Vue(options) {
+    this.data = options.data;
+    observe(this.data);  // 给对象的每个属性都加上响应式系统
+    new Watcher(); // 新建订阅者。这一步仅仅只是告诉发布者我是谁,真正的订阅发生在数据被引用的时候
+}
+
+// 测试
+var vm = new Vue({
+    data: {
+        name: 'tom'
+    }
+});
+
+console.log('模拟数据被使用', vm.data.name) // 此时订阅了
+vm.data.name = 'jerry' // 模拟数据更新
+</pre>
+
+<p>PS：其实这里有一点“标题党”了，按照上面的分析，上面代码中是通过“赋值语句”修改对象的属性值，因此来说其实更像是数据的<code>单向绑定</code>而已。由于Compile模块的代码实现起来更为复杂，所以上面代码就没有实现。但是没有关系，因为Vue的双向数据绑定的最核心的部分：数据劫持和发布者-订阅者模式已经基本实现了。</p>
+<p>（<a href="https://github.com/louzhedong/blog/issues/4" target="_blank" rel="external">更完整的Vue数据双向绑定看这里</a>）</p>
+<h2 id="番外：使用Object-defineProperty和Proxy实现数据劫持的区别"><a href="#番外：使用Object-defineProperty和Proxy实现数据劫持的区别" class="headerlink" title="番外：使用Object.defineProperty和Proxy实现数据劫持的区别"></a>番外：使用Object.defineProperty和Proxy实现数据劫持的区别</h2><p>Object.defineProperty的缺点：</p>
+<ol>
+<li>只能对属性进行数据劫持，所以需要深度遍历整个对象</li>
+<li>对于数组不能监听到数据的变化。虽然Vue中确实可以检测到数组数据的变化，但是其实用用了hack的方法，而且也是有缺陷的。</li>
+</ol>
+<p>Proxy是ES6的新语法，用于修改某些操作的默认行为。Proxy可以理解成，在目标对象之前假设一层“拦截”，当外界对该对象进行访问时，都必须要先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</p>
+<p>Proxy就没有以上Object.defineProperty的那些问题，它支持监听数组变化，并且可以直接对整个对象进行拦截，所以Vue也将在3.0的时候使用Proxy来替换Object.defineProperty。</p>
+<pre>
+var p = new Proxy(targetObj, handler);
+// targetObj参数是一个对象，表示所要拦截的目标对象
+// handler参数也是一个对象，表示定制拦截行为
+</pre>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="external">Proxy的使用方法</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+        <p class="copyright text-muted">
+          <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备17129030号</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
