@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Allenmind">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="网络通讯：从Ajax到Websocket的发展小结"/>
+  <meta property="og:description" content="这是Allenmind的个人博客" />
+  <meta property="og:site_name" content="Allenmind&#39;s Blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://allenmind.cn"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Allenmind&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.jpg">
+  
+
+  <!-- Site Title -->
+  <title>Allenmind's Blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/mountain.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">网络通讯：从Ajax到Websocket的发展小结</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  首页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  归档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/AllenMinD">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories">
+                  
+                  分类
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags">
+                  
+                  标签
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Allenmind</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-10-17</span>
+            <span class="time">22:19:56</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/网络/">网络</a>
+</span>
+          
+          <!-- 阅读统计 -->
+          <span class="read-count info">
+            <span id="busuanzi_container_page_pv">
+              阅读量 <span id="busuanzi_value_page_pv"></span> 次
+            </span>            
+          </span>
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Ajax/">#Ajax</a> <a class="tag" href="/tags/WebSocket/">#WebSocket</a> <a class="tag" href="/tags/网络通讯/">#网络通讯</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>本文主要对客户端和服务器通讯方式的发展进行小结。<br><a id="more"></a></p>
+<h1>网络通讯：从Ajax到Websocket的发展小结</h1>
+
+<p>参考文献： </p>
+<ul>
+<li><a href="https://www.jianshu.com/p/4aa085b9984b" target="_blank" rel="external">Web端即时通讯技术盘点：短轮询、Comet、Websocket、SSE</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">WebSocket 教程</a></li>
+<li><a href="https://juejin.im/post/5af5693451882530646527d1" target="_blank" rel="external">从HTML5 WebSocket到Socket.io</a></li>
+<li>《JavaScript高级程序设计》第21章</li>
+</ul>
+<h2 id="远古时期"><a href="#远古时期" class="headerlink" title="远古时期"></a>远古时期</h2><p>传统的服务器和客户端交互，是通过<code>&lt;form&gt;</code>表单来实现的。</p>
+<h2 id="Ajax时代"><a href="#Ajax时代" class="headerlink" title="Ajax时代"></a>Ajax时代</h2><p>到后来出现了Ajax技术 ，就可以通过js来发起Ajax请求。</p>
+<p>Ajax的readyState：  </p>
+<ul>
+<li>0 － （未初始化）还没有调用send()方法  </li>
+<li>1 － （载入）已调用send()方法，正在发送请求</li>
+<li>2 － （载入完成）send()方法执行完成，已经接收到全部响应内容 </li>
+<li>3 － （交互）正在解析响应内容 </li>
+<li>4 － （完成）响应内容解析完成，可以在客户端调用了</li>
+</ul>
+<p>对于一些C/S交互不是特别频繁的情况，问题不会太大；但是，如果是一些对实时性要求高、海量数据并发的应用来说，就不行了，比如常见的网页游戏、证券网站、RSS订阅推送、网页实时对话、打车软件等等。同样在客户端要呈现一些信息时，在服务器端很可能就要过时了。</p>
+<p>后来出现了<code>Comet</code>技术，这是实际上是一种hack技术，通过它可以实现服务器推送（server push）。Comet技术的实现有2种方法：基于Ajax的长轮询（Long Polling）和流技术机制（利用iframe标签的长连接的特性）。</p>
+<p><code>普通轮询（短轮询）</code>：浏览器定时向服务器发送请求，看有没有更新的数据，服务器收到请求后，会 <strong>【立刻发送】</strong> 响应，无论数据是否有效、是否有更新。</p>
+<p><code>长轮询</code>：浏览器定时向服务器发送请求，然后服务器 <strong>【一直保持连接打开，直到有数据可发送】</strong> 。发送完数据之后，浏览器关闭连接，然后浏览器又会发起一个新的请求。</p>
+<p><code>Http流技术机制</code>：流不同于上述两种轮询，因为它在页面的整个生命周期中只使用1个HTTP连接，具体来说，就是浏览器向服务器发起请求，而服务器保持连接打开，然后 <strong>【周期性地】</strong> 向浏览器发送数据。所有服务器语言都支持打印到输出缓存然后刷新（将输出缓存中的内容一次性全部发送到客户端）的功能。</p>
+<p>但是无论是<code>&lt;form&gt;</code>、Ajax还是Comet，都无法解决一个根本的问题：由于它们都是基于http协议的，C/S之间的交互，必须要通过客户端发起请求。</p>
+<h2 id="WebSocket时代"><a href="#WebSocket时代" class="headerlink" title="WebSocket时代"></a>WebSocket时代</h2><p>后来W3C推出了WebSocket协议来解决这个问题。WebSocket协议是一个基于TCP协议的全双公工通讯协议，也就是说：客户端可以向服务器进行通讯，服务器也可以主动向客户端通讯。而且它支持文本数据以及二进制数据。</p>
+<blockquote>
+<p>http2.0也有推送，那和websocket的区别是什么？</p>
+<p>答：HTTP/2 只能推送静态资源，无法推送指定的信息。</p>
+</blockquote>
+<p>WebSocket在通讯之前，要先进行握手，建立连接以后才可以进行双向通讯，而这个握手的过程是利用了HTTP协议来进行的。</p>
+<p>WebSocket是怎么握手的？（<a href="https://www.cnblogs.com/nickbai/articles/5816689.html" target="_blank" rel="external">参考文献</a>）</p>
+<blockquote>
+<ol>
+<li>客户端发送Sec-WebSocket-Key给server  </li>
+<li>服务器收到Sec-WebSocket-Key后，加密并返回Sec-WebSocket-Accept给客户端  </li>
+<li>客户端收到Sec-WebSocket-Accept后，进行本地校验，若校验通过，则握手成功，客户端正式与服务器建立连接，然后开始进行数据传输。</li>
+</ol>
+</blockquote>
+<p>WebSocket的readyState：</p>
+<ul>
+<li>CONNECTING：值为0，表示正在连接。</li>
+<li>OPEN：值为1，表示连接成功，可以通信了。</li>
+<li>CLOSING：值为2，表示连接正在关闭。</li>
+<li>CLOSED：值为3，表示连接已经关闭，或者打开连接失败。</li>
+</ul>
+<p>WebSocket的API常用的有这些：（<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="external">参考MDN</a>）</p>
+<ul>
+<li>onopen</li>
+<li>onmessage</li>
+<li>onclose</li>
+<li>close</li>
+</ul>
+<pre>
+// 创建一个socket实例：
+const socket = new WebSocket(ws://localhost:9093'); // 建立连接
+// 打开socket
+socket.onopen = (event) => {
+    // 发送一个初始化消息
+      socket.send('Hello Server!')
+       // 服务器有响应数据触发
+    socket.onmessage = (event) => {
+        console.log('Client received a message',event)
+    }
+    // 出错时触发，并且会关闭连接。这时可以根据错误信息进行按需处理
+    socket.onerror = (event) => {
+          console.log('error')
+    }
+    // 监听Socket的关闭
+    socket.onclose = (event) => {
+        console.log('Client notified socket has closed',event)
+    }
+    // 关闭Socket
+    socket.close(1000, 'closing normally')
+}
+</pre>
+
+<h2 id="socket-io"><a href="#socket-io" class="headerlink" title="socket.io"></a>socket.io</h2><p>socket.io是将WebSocket和轮询（Polling）机制以及其他实时通讯方式封装成一个通过的接口，并在服务器端实现了这些实时机制的相应代码。</p>
+<h2 id="SSE"><a href="#SSE" class="headerlink" title="SSE"></a>SSE</h2><p>SSE：（服务器发送事件），创建到服务器的单向连接后，服务器就可以通过连接向客户端发送任意数量的数据。</p>
+<h2 id="WebSocket-or-SSE"><a href="#WebSocket-or-SSE" class="headerlink" title="WebSocket or SSE ?"></a>WebSocket or SSE ?</h2><p>WebSocket和SSE都是未来解决服务器推送问题的方案，在选择要使用哪一个的时候，要考虑一下问题：</p>
+<ol>
+<li>是否有自由度简历和维护WebSocket服务器？因为WebSocket协议不同于HTTP，所以现有服务器不能用于WebSocket通信。SSE倒是通过常规HTTP通信，因此现有服务器可以满足需求。</li>
+<li>到底需不需要双向通讯。如果用例只需要读取服务器数据（比如比赛成绩），那么SSE比较容易实现。如果用例必须双向通信（比如聊天室），那么WebSockets显然更好。</li>
+<li>在不能使用WebSocket的时候，可以结合XHR和SSE来实现双向通信。</li>
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+        <p class="copyright text-muted">
+          © <a target="_blank" href="https://allenmind.cn/">Allenmind</a>
+        </p>
+        <p class="copyright text-muted" id="busuanzi_container_site_uv"> 
+          本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+        </p>
+        <p class="copyright text-muted">
+          <a target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备17129030号</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://allenmind.cn/%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%EF%BC%9A%E4%BB%8EAjax%E5%88%B0Websocket%E7%9A%84%E5%8F%91%E5%B1%95%E5%B0%8F%E7%BB%93/</loc>
+    <lastmod>2019-03-15T14:19:39.343Z</lastmod>
+    <data>
+        <display>
+        <title>网络通讯：从Ajax到Websocket的发展小结</title>
+        <pubTime>2018-10-17T14:02:01.000Z</pubTime>
+        
+        <tag>Ajax</tag>
+         
+        <tag>WebSocket</tag>
+         
+        <tag>网络通讯</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络" url="https://allenmind.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://allenmind.cn/Vue%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/</loc>
     <lastmod>2019-03-03T11:23:07.276Z</lastmod>
     <data>
@@ -217,9 +241,9 @@
         <title>Javascript数据类型总结和对象的分类</title>
         <pubTime>2018-04-07T08:14:50.000Z</pubTime>
         
-        <tag>数据类型</tag>
-         
         <tag>对象</tag>
+         
+        <tag>数据类型</tag>
          
          
            

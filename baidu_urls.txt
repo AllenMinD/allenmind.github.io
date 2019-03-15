@@ -2,6 +2,7 @@ https://allenmind.cn/JavaScript：从IIFEs，到CommonJS，再到ES6的Modules/
 https://allenmind.cn/Vue双向数据绑定原理分析/
 https://allenmind.cn/JavaScript运行机制、事件循环/
 https://allenmind.cn/对ES6-Promise的理解/
+https://allenmind.cn/网络通讯：从Ajax到Websocket的发展小结/
 https://allenmind.cn/ES6-操作符/
 https://allenmind.cn/socketio-namespace/
 https://allenmind.cn/prototype-or-not/
